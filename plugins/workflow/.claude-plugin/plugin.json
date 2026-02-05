@@ -1,0 +1,19 @@
+{
+  "name": "workflow",
+  "version": "1.0.0",
+  "description": "Unified workflow: Spec → Plan → Task with complexity detection (Block A/B/C)",
+  "author": "Agent Toolkit",
+  "commands": ["start", "spec", "plan", "status"],
+  "skills": [
+    "workflow-router",
+    "block-a-spec-validation",
+    "block-b-spec-to-tdd",
+    "block-c-simple-planning",
+    "task-integration",
+    "meta-testing"
+  ],
+  "agents": ["meta-validator"],
+  "hooks": [],
+  "dependencies": [],
+  "tags": ["workflow", "planning", "spec-driven", "tdd", "task-management", "openspec"]
+}
