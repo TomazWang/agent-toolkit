@@ -1,24 +1,110 @@
 {
-  "name": "Agent Toolkit Marketplace",
-  "version": "1.0.0",
-  "description": "Comprehensive collection of Claude Code plugins for enhanced development workflows",
-  "author": "TomazWang",
-  "registry": "marketplace/registry.json",
-  "repository": "https://github.com/TomazWang/agent-toolkit",
-  "homepage": "https://github.com/TomazWang/agent-toolkit",
-  "categories": [
-    "workflow",
-    "quality",
-    "development",
-    "meta"
-  ],
-  "tags": [
-    "workflow",
-    "tdd",
-    "sdd",
-    "code-review",
-    "brainstorming",
-    "task-management",
-    "plugin-development"
+  "name": "agent-toolkit",
+  "owner": {
+    "name": "TomazWang",
+    "email": "your-email@example.com"
+  },
+  "metadata": {
+    "description": "Comprehensive collection of Claude Code plugins for enhanced development workflows",
+    "version": "1.0.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "workflow",
+      "source": "./plugins/workflow",
+      "description": "Unified workflow system with Block A/B/C complexity routing (Spec → Plan → Task)",
+      "version": "1.0.0",
+      "author": {
+        "name": "Agent Toolkit"
+      },
+      "category": "workflow",
+      "keywords": ["workflow", "planning", "spec-driven", "tdd", "complexity-routing"],
+      "repository": "https://github.com/TomazWang/agent-toolkit"
+    },
+    {
+      "name": "task-management",
+      "source": "./plugins/task-management",
+      "description": "Structured task tracking and project workflow management",
+      "version": "1.0.0",
+      "author": {
+        "name": "Agent Toolkit"
+      },
+      "category": "workflow",
+      "keywords": ["workflow", "productivity", "project-management"],
+      "repository": "https://github.com/TomazWang/agent-toolkit"
+    },
+    {
+      "name": "code-review",
+      "source": "./plugins/code-review",
+      "description": "Comprehensive code review system with 5 parallel specialized agents",
+      "version": "1.0.0",
+      "author": {
+        "name": "Agent Toolkit"
+      },
+      "category": "quality",
+      "keywords": ["code-quality", "review", "security", "testing", "performance"],
+      "repository": "https://github.com/TomazWang/agent-toolkit"
+    },
+    {
+      "name": "brainstorming",
+      "source": "./plugins/brainstorming",
+      "description": "Universal brainstorming with 5 modes and 3 design templates",
+      "version": "1.0.0",
+      "author": {
+        "name": "Agent Toolkit"
+      },
+      "category": "workflow",
+      "keywords": ["design", "planning", "collaboration", "brainstorming"],
+      "repository": "https://github.com/TomazWang/agent-toolkit"
+    },
+    {
+      "name": "plugin-creator",
+      "source": "./plugins/plugin-creator",
+      "description": "Meta-plugin for creating, validating, and publishing Claude Code plugins",
+      "version": "1.0.0",
+      "author": {
+        "name": "Agent Toolkit"
+      },
+      "category": "meta",
+      "keywords": ["meta", "development", "tools", "plugin-development"],
+      "repository": "https://github.com/TomazWang/agent-toolkit"
+    },
+    {
+      "name": "tdd-workflow",
+      "source": "./plugins/tdd-workflow",
+      "description": "Test-Driven Development workflow with RED-GREEN-REFACTOR cycle",
+      "version": "1.0.0",
+      "author": {
+        "name": "Agent Toolkit"
+      },
+      "category": "development",
+      "keywords": ["testing", "tdd", "quality", "workflow"],
+      "repository": "https://github.com/TomazWang/agent-toolkit"
+    },
+    {
+      "name": "sdd-workflow",
+      "source": "./plugins/sdd-workflow",
+      "description": "Specification-Driven Development with OpenAPI/AsyncAPI specifications",
+      "version": "1.0.0",
+      "author": {
+        "name": "Agent Toolkit"
+      },
+      "category": "development",
+      "keywords": ["api", "specification", "openapi", "asyncapi", "workflow"],
+      "repository": "https://github.com/TomazWang/agent-toolkit"
+    },
+    {
+      "name": "marketplace",
+      "source": "./plugins/marketplace",
+      "description": "Plugin marketplace for discovering and installing agent-toolkit plugins",
+      "version": "1.0.0",
+      "author": {
+        "name": "Agent Toolkit"
+      },
+      "category": "meta",
+      "keywords": ["marketplace", "installer", "distribution"],
+      "repository": "https://github.com/TomazWang/agent-toolkit"
+    }
   ]
 }
