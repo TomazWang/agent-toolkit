@@ -26,7 +26,7 @@ agent-toolkit/
 │   ├── task-management/       # Task tracking and workflow
 │   ├── code-review/           # Multi-agent code review
 │   ├── brainstorming/         # Design collaboration
-│   ├── planning-workflow/     # Plan creation and execution
+│   ├── workflow/              # Unified workflow with Block A/B/C routing
 │   ├── plugin-creator/        # Meta-plugin for creating plugins
 │   ├── tdd-workflow/          # Test-Driven Development
 │   ├── sdd-workflow/          # Specification-Driven Development
@@ -53,34 +53,120 @@ Each plugin follows the standard Claude Code plugin structure:
 plugin-name/
 ├── .claude-plugin/
 │   └── plugin.json           # Metadata: name, version, commands, skills, agents
-├── commands/                 # Slash commands (*.md)
+├── commands/                 # Slash commands (*.md files)
 │   └── command-name.md       # YAML frontmatter + markdown instructions
-├── skills/                   # Reusable skills (*.md)
-│   └── skill-name.md         # YAML frontmatter + skill instructions
-├── agents/                   # Specialized agents (*.md)
+├── skills/                   # Reusable skills (FOLDERS with SKILL.md)
+│   └── skill-name/           # Each skill is a directory
+│       └── SKILL.md          # YAML frontmatter + skill instructions
+├── agents/                   # Specialized agents (*.md files)
 │   └── agent-name.md         # YAML frontmatter + agent system prompt
-├── hooks/                    # Event handlers (*.md or *.sh)
-│   └── hook-name.md          # Event-based automation
+├── hooks/                    # Event handlers (*.sh scripts)
+│   └── PreToolUse.sh         # Executable bash scripts for events
 └── README.md                 # User-facing documentation
 ```
+
+**CRITICAL**: Skills are FOLDERS with SKILL.md inside, not flat .md files!
 
 ## Plugin Categories
 
 ### Workflow Plugins
+- **workflow**: Unified workflow system with Block A/B/C complexity routing (Spec → Plan → Task)
+  - Block A: Complex projects → Spec + Meta-Validation
+  - Block B: Normal features → Spec Change + TDD
+  - Block C: Simple tasks → Simple Planning
+  - Auto-detects complexity and routes appropriately
+  - Commands: `/workflow:start`, `/workflow:spec`, `/workflow:plan`, `/workflow:status`
 - **task-management**: Structured task tracking with TodoWrite integration, git branch linking, and dependency management
-- **planning-workflow**: Plan creation (writing-plans) and systematic execution (executing-plans)
-- **brainstorming**: Idea → Design → Documentation workflow with incremental validation
+- **brainstorming**: Idea → Design → Documentation workflow with incremental validation, 5 modes (free exploration, structured, sprint, alternatives, roleplay)
 
 ### Quality Plugins
-- **code-review**: 5 parallel specialized agents (architecture, security, testing, performance, style) for comprehensive review
+- **code-review**: 5 parallel specialized agents (architecture, security, test-coverage, performance, style) for comprehensive review
 
 ### Development Plugins
 - **tdd-workflow**: Enforced RED-GREEN-REFACTOR cycle for Test-Driven Development
-- **sdd-workflow**: OpenAPI/AsyncAPI spec-first development with code generation
+  - Command: `/tdd-workflow:start`
+- **sdd-workflow**: OpenAPI/AsyncAPI spec-first development with validation and code generation
+  - Command: `/sdd-workflow:create`
 
 ### Meta Plugins
-- **plugin-creator**: Tools for creating new plugins, skills, commands, agents, and hooks
+- **plugin-creator**: Complete toolkit for creating Claude Code plugins
+  - Commands: `/plugin:create`, `/plugin:add`, `/plugin:validate`, `/plugin:package`
+  - Skills: plugin-development, skill-development, command-development, agent-development, hook-development
+  - Agents: plugin-architect, plugin-validator
 - **marketplace**: Plugin discovery, installation, and management system
+  - Command: `/marketplace:browse`, `/marketplace:install`
+
+## Workflow Plugin: Block A/B/C Architecture
+
+The **workflow** plugin implements a unified development workflow with automatic complexity routing:
+
+### Block A: Spec + Meta-Validation (Complex)
+**For**: New projects, architectural decisions, security-critical features, >15 steps
+
+**Process**:
+1. Define specification (OpenAPI/AsyncAPI for APIs, design docs for features)
+2. Generate Proof-of-Concept tests to validate spec
+3. Manual validation questions (scalability, complexity, requirements fit)
+4. Approve spec before implementation
+5. Implement against validated spec
+
+**Command**: `/workflow:start "requirement"` → Auto-routes to Block A if complex
+
+### Block B: Spec Change + TDD (Medium)
+**For**: Normal features, existing spec, 8-15 steps, moderate complexity
+
+**Process**:
+1. Update specification with changes
+2. Follow TDD workflow (RED-GREEN-REFACTOR)
+3. Implement against spec
+4. Validate with tests
+
+**Command**: `/workflow:start "requirement"` → Auto-routes to Block B if medium
+
+### Block C: Simple Planning (Simple)
+**For**: Quick tasks, bug fixes, <8 steps, single-file changes
+
+**Process**:
+1. Create simple plan
+2. Execute directly
+3. Verify completion
+
+**Command**: `/workflow:start "requirement"` → Auto-routes to Block C if simple
+
+### Auto-Detection
+
+The workflow-router skill analyzes requirements and routes to appropriate block:
+
+```
+/workflow:start "Implement user authentication"
+  ↓
+Detects: Complex (security-critical, new feature)
+  ↓
+Routes to: Block A (Spec + Meta-Validation)
+  ↓
+Guides through: Spec → PoC → Validation → Implementation
+```
+
+**Manual override**:
+```bash
+/workflow:start "requirement" --block a  # Force Block A
+/workflow:start "requirement" --block b  # Force Block B
+/workflow:start "requirement" --block c  # Force Block C
+```
+
+### Integration with Other Plugins
+
+- **task-management**: Auto-integrates if available for task tracking
+- **tdd-workflow**: Used in Block B for test-driven development
+- **sdd-workflow**: Used in Block A/B for API specification
+- **brainstorming**: Can be used before workflow for design exploration
+
+### OpenSpec Integration
+
+The workflow plugin auto-detects OpenSpec projects and adapts:
+- If `openspec/` directory exists → Integrates with OpenSpec workflows
+- Follows OpenSpec philosophy: "fluid not rigid, iterative not waterfall, easy not complex"
+- Can use OpenSpec's plan/ directory for planning artifacts
 
 ## Common Development Tasks
 
@@ -110,9 +196,16 @@ ln -s $(pwd)/plugins/task-management ~/.claude/plugins/task-management
 
 ### Creating a New Plugin
 
+**Option 1: Use plugin-creator plugin (recommended)**
+```bash
+/plugin:create my-plugin
+```
+
+**Option 2: Manual creation**
+
 1. **Create directory structure:**
 ```bash
-mkdir -p plugins/my-plugin/{.claude-plugin,commands,skills,agents}
+mkdir -p plugins/my-plugin/{.claude-plugin,commands,skills,agents,hooks}
 ```
 
 2. **Create plugin.json:**
@@ -122,24 +215,53 @@ mkdir -p plugins/my-plugin/{.claude-plugin,commands,skills,agents}
   "version": "1.0.0",
   "description": "Brief description",
   "author": "Agent Toolkit",
-  "commands": ["my-command"],
-  "skills": ["my-skill"],
-  "agents": [],
+  "commands": ["command1"],
+  "skills": ["skill1"],
+  "agents": ["agent1"],
   "hooks": [],
   "dependencies": [],
   "tags": ["category"]
 }
 ```
 
+**IMPORTANT**: Command names should NOT include plugin prefix (auto-added).
+- ✓ `"commands": ["start"]` → invoked as `/my-plugin:start`
+- ✗ `"commands": ["my-plugin:start"]` → would become `/my-plugin:my-plugin:start`
+
 3. **Create components:**
-   - Commands: `commands/my-command.md` (YAML frontmatter + instructions)
-   - Skills: `skills/my-skill.md` (YAML frontmatter + skill logic)
-   - Agents: `agents/my-agent.md` (YAML frontmatter + system prompt)
+
+**Commands** (flat .md files):
+```bash
+# Create: commands/start.md
+```
+
+**Skills** (FOLDERS with SKILL.md):
+```bash
+# Create: skills/my-skill/SKILL.md (not skills/my-skill.md!)
+mkdir -p plugins/my-plugin/skills/my-skill
+touch plugins/my-plugin/skills/my-skill/SKILL.md
+```
+
+**Agents** (flat .md files):
+```bash
+# Create: agents/analyzer.md
+```
+
+**Hooks** (executable .sh files):
+```bash
+# Create: hooks/PreToolUse.sh
+chmod +x plugins/my-plugin/hooks/PreToolUse.sh
+```
 
 4. **Add to marketplace registry:**
    Edit `marketplace/registry.json` to include new plugin
 
 5. **Create README.md** with attribution, features, and usage
+
+6. **Validate plugin:**
+```bash
+/plugin:validate plugins/my-plugin
+```
 
 ### Updating the Marketplace Registry
 
@@ -195,6 +317,14 @@ examples:
 
 ### Skill Files (YAML + Markdown)
 
+**IMPORTANT**: Skills are FOLDERS with SKILL.md inside:
+
+```
+skills/
+└── my-skill/              # Folder named after skill
+    └── SKILL.md           # Must be named SKILL.md
+```
+
 Skills define when and how they should be used:
 
 ```markdown
@@ -206,13 +336,13 @@ description: When to use this skill
 # Skill Name
 
 ## When to Use
-[Triggering conditions]
+[Triggering conditions - when should Claude activate this skill]
 
 ## The Process
 [Step-by-step workflow]
 
 ## Examples
-[Usage examples]
+[Concrete usage examples]
 ```
 
 ### Agent Files (YAML + Markdown)
@@ -223,20 +353,27 @@ Agents are specialized with focused expertise:
 ---
 name: agent-name
 description: Agent's specialty
-color: blue|red|green|purple
-tools: [Read, Grep, Glob, Bash]
+color: blue|green|orange|cyan|purple
+tools: [Read, Grep, Glob, Bash, Edit, Write, Task]
 ---
 
 # Agent Name
 
-You are a specialized agent focused on [specialty].
+Specialized agent for [specialty].
 
 ## Your Role
-[What this agent does]
+[Clear role definition]
 
 ## Process
-[How to accomplish the role]
+[Step-by-step workflow]
+
+## Output Format
+[Expected output structure]
 ```
+
+**Valid colors**: blue (general), green (testing), orange (performance), cyan (style), purple (architecture)
+
+**Available tools**: Read, Grep, Glob, Bash, Edit, Write, Task
 
 ## Source References
 
@@ -244,13 +381,19 @@ This project builds upon and references:
 
 ### Official Anthropic Plugins
 - **URL**: https://github.com/anthropics/claude-code/tree/main/plugins
-- **Usage**: Plugin structure, parallel agents (code-review), workflow patterns (feature-dev)
-- **Files referenced**: Plugin architecture, agent patterns, command structures
+- **Usage**: Plugin structure, parallel agents (code-review), plugin-dev patterns (plugin-creator)
+- **Files referenced**: Plugin architecture, agent patterns, command structures, plugin.json format
 
 ### Superpowers by obra
 - **URL**: https://github.com/obra/superpowers
-- **Usage**: Workflow skills (brainstorming, tdd, systematic-debugging, writing-plans, executing-plans)
-- **Files referenced**: Skill organization, skill composition patterns, workflow enforcement
+- **Usage**: Workflow skills (brainstorming, tdd, systematic-debugging, verification), skill patterns
+- **Files referenced**: Skill organization, skill composition patterns, workflow enforcement, progressive disclosure
+
+### OpenSpec by Fission-AI
+- **URL**: https://github.com/Fission-AI/OpenSpec
+- **Usage**: Spec-first philosophy integration in workflow plugin
+- **Philosophy**: "fluid not rigid, iterative not waterfall, easy not complex"
+- **Integration**: Auto-detection in workflow plugin, respects openspec/ directory structure
 
 ## Working with This Repository
 
