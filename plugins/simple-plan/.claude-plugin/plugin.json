@@ -1,0 +1,12 @@
+{
+  "name": "simple-plan",
+  "version": "1.0.0",
+  "description": "Simple, flexible planning - works standalone or integrates with OpenSpec",
+  "author": "Agent Toolkit",
+  "commands": ["plan"],
+  "skills": ["simple-planning", "openspec-integration"],
+  "agents": [],
+  "hooks": [],
+  "dependencies": [],
+  "tags": ["planning", "workflow", "openspec", "spec-driven"]
+}
