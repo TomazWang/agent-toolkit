@@ -1,0 +1,24 @@
+{
+  "name": "Agent Toolkit Marketplace",
+  "version": "1.0.0",
+  "description": "Comprehensive collection of Claude Code plugins for enhanced development workflows",
+  "author": "TomazWang",
+  "registry": "marketplace/registry.json",
+  "repository": "https://github.com/TomazWang/agent-toolkit",
+  "homepage": "https://github.com/TomazWang/agent-toolkit",
+  "categories": [
+    "workflow",
+    "quality",
+    "development",
+    "meta"
+  ],
+  "tags": [
+    "workflow",
+    "tdd",
+    "sdd",
+    "code-review",
+    "brainstorming",
+    "task-management",
+    "plugin-development"
+  ]
+}
