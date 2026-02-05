@@ -2,11 +2,8 @@
   "name": "brainstorming",
   "version": "1.0.0",
   "description": "Collaborative design and specification development through guided brainstorming",
-  "author": "Agent Toolkit",
-  "commands": ["brainstorm"],
-  "skills": ["idea-to-design", "design-validation"],
-  "agents": ["design-architect"],
-  "hooks": [],
-  "dependencies": [],
-  "tags": ["design", "planning", "collaboration"]
+  "author": {
+    "name": "Agent Toolkit"
+  },
+  "keywords": ["design", "planning", "collaboration"]
 }

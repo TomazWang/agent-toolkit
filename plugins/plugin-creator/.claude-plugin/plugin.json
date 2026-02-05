@@ -2,20 +2,8 @@
   "name": "plugin-creator",
   "version": "1.0.0",
   "description": "Meta-plugin for creating, validating, and publishing Claude Code plugins",
-  "author": "Agent Toolkit",
-  "commands": ["plugin"],
-  "skills": [
-    "plugin-development",
-    "skill-development",
-    "command-development",
-    "agent-development",
-    "hook-development"
-  ],
-  "agents": [
-    "plugin-architect",
-    "plugin-validator"
-  ],
-  "hooks": [],
-  "dependencies": [],
-  "tags": ["meta", "development", "tools"]
+  "author": {
+    "name": "Agent Toolkit"
+  },
+  "keywords": ["meta", "development", "tools"]
 }

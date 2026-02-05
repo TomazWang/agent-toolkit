@@ -2,11 +2,8 @@
   "name": "sdd-workflow",
   "version": "1.0.0",
   "description": "Specification-Driven Development with OpenAPI/AsyncAPI specifications",
-  "author": "Agent Toolkit",
-  "commands": ["create"],
-  "skills": ["spec-driven-development"],
-  "agents": ["spec-validator"],
-  "hooks": [],
-  "dependencies": [],
-  "tags": ["api", "specification", "openapi", "workflow"]
+  "author": {
+    "name": "Agent Toolkit"
+  },
+  "keywords": ["api", "specification", "openapi", "workflow"]
 }

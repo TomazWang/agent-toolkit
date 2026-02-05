@@ -2,18 +2,8 @@
   "name": "task-management",
   "version": "1.0.0",
   "description": "Structured task tracking and project workflow management for Claude Code",
-  "author": "Agent Toolkit",
-  "commands": [
-    "task"
-  ],
-  "skills": [
-    "task-workflow",
-    "project-planning"
-  ],
-  "agents": [
-    "task-organizer"
-  ],
-  "hooks": [],
-  "dependencies": [],
-  "tags": ["workflow", "productivity", "project-management"]
+  "author": {
+    "name": "Agent Toolkit"
+  },
+  "keywords": ["workflow", "productivity", "project-management"]
 }
