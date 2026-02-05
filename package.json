@@ -1,0 +1,31 @@
+{
+  "name": "agent-toolkit",
+  "version": "0.1.0",
+  "description": "Comprehensive collection of Claude Code plugins for enhanced development workflows",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node scripts/build.js",
+    "lint": "echo \"Linting not configured yet\"",
+    "install-plugin": "node scripts/install-plugin.js"
+  },
+  "keywords": [
+    "claude-code",
+    "plugins",
+    "ai",
+    "development",
+    "workflow",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/[username]/agent-toolkit.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

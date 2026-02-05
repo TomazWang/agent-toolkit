@@ -1,0 +1,12 @@
+{
+  "name": "tdd-workflow",
+  "version": "1.0.0",
+  "description": "Test-Driven Development workflow with RED-GREEN-REFACTOR cycle",
+  "author": "Agent Toolkit",
+  "commands": ["tdd"],
+  "skills": ["test-driven-development"],
+  "agents": ["tdd-guide"],
+  "hooks": [],
+  "dependencies": [],
+  "tags": ["testing", "tdd", "quality", "workflow"]
+}

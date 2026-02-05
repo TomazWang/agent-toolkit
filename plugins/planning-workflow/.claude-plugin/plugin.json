@@ -1,0 +1,12 @@
+{
+  "name": "planning-workflow",
+  "version": "1.0.0",
+  "description": "Comprehensive planning and execution workflows for development tasks",
+  "author": "Agent Toolkit",
+  "commands": ["plan"],
+  "skills": ["writing-plans", "executing-plans"],
+  "agents": ["plan-executor"],
+  "hooks": [],
+  "dependencies": [],
+  "tags": ["planning", "workflow", "execution"]
+}

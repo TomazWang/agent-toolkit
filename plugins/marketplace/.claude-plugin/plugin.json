@@ -1,0 +1,12 @@
+{
+  "name": "marketplace",
+  "version": "1.0.0",
+  "description": "Plugin marketplace for discovering and installing agent-toolkit plugins",
+  "author": "Agent Toolkit",
+  "commands": ["marketplace"],
+  "skills": [],
+  "agents": [],
+  "hooks": [],
+  "dependencies": [],
+  "tags": ["marketplace", "installer", "distribution"]
+}

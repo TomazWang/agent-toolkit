@@ -1,0 +1,23 @@
+{
+  "name": "code-review",
+  "version": "1.0.0",
+  "description": "Comprehensive code review system with parallel specialized agents",
+  "author": "Agent Toolkit",
+  "commands": [
+    "review"
+  ],
+  "skills": [
+    "reviewing-code",
+    "security-analysis"
+  ],
+  "agents": [
+    "architecture-reviewer",
+    "security-reviewer",
+    "test-coverage-reviewer",
+    "performance-reviewer",
+    "style-reviewer"
+  ],
+  "hooks": [],
+  "dependencies": [],
+  "tags": ["code-quality", "review", "security", "testing"]
+}
