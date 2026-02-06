@@ -5,5 +5,10 @@
   "author": {
     "name": "Agent Toolkit"
   },
+  "commands": ["task"],
+  "skills": ["task-workflow", "project-planning"],
+  "agents": ["task-organizer"],
+  "hooks": [],
+  "dependencies": [],
   "keywords": ["workflow", "productivity", "project-management"]
 }

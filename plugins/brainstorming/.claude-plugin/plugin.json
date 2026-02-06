@@ -5,5 +5,10 @@
   "author": {
     "name": "Agent Toolkit"
   },
+  "commands": ["brainstorm"],
+  "skills": ["idea-to-design", "design-validation"],
+  "agents": ["design-architect"],
+  "hooks": [],
+  "dependencies": [],
   "keywords": ["design", "planning", "collaboration"]
 }

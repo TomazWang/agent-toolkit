@@ -1,5 +1,5 @@
 ---
-name: workflow:plan
+name: plan
 description: Create simple plans (Block C workflow)
 usage: |
   /workflow:plan <requirement>

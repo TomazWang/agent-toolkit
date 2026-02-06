@@ -5,5 +5,16 @@
   "author": {
     "name": "Agent Toolkit"
   },
+  "commands": ["review"],
+  "skills": ["reviewing-code", "security-analysis"],
+  "agents": [
+    "architecture-reviewer",
+    "security-reviewer",
+    "test-coverage-reviewer",
+    "performance-reviewer",
+    "style-reviewer"
+  ],
+  "hooks": [],
+  "dependencies": [],
   "keywords": ["code-quality", "review", "security", "testing"]
 }

@@ -1,5 +1,5 @@
 ---
-name: workflow:start
+name: start
 description: Start a new workflow - auto-detects complexity and routes to Block A/B/C
 usage: |
   /workflow:start <requirement>

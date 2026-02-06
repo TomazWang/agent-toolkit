@@ -5,5 +5,17 @@
   "author": {
     "name": "Agent Toolkit"
   },
+  "commands": ["start", "spec", "plan", "status"],
+  "skills": [
+    "workflow-router",
+    "block-a-spec-validation",
+    "block-b-spec-to-tdd",
+    "block-c-simple-planning",
+    "task-integration",
+    "meta-testing"
+  ],
+  "agents": ["meta-validator"],
+  "hooks": [],
+  "dependencies": [],
   "keywords": ["workflow", "planning", "spec-driven", "tdd", "task-management", "openspec"]
 }
