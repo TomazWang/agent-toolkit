@@ -5,5 +5,16 @@
   "author": {
     "name": "Agent Toolkit"
   },
+  "commands": ["plugin"],
+  "skills": [
+    "plugin-development",
+    "skill-development",
+    "command-development",
+    "agent-development",
+    "hook-development"
+  ],
+  "agents": ["plugin-architect", "plugin-validator"],
+  "hooks": [],
+  "dependencies": [],
   "keywords": ["meta", "development", "tools"]
 }

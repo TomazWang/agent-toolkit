@@ -1,7 +1,7 @@
 ---
 name: security-reviewer
 description: Specialized agent for identifying security vulnerabilities and risks
-color: red
+color: orange
 tools: [Read, Grep, Glob]
 ---
 

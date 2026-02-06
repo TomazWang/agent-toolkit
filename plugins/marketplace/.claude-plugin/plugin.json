@@ -5,5 +5,10 @@
   "author": {
     "name": "Agent Toolkit"
   },
+  "commands": ["marketplace"],
+  "skills": [],
+  "agents": [],
+  "hooks": [],
+  "dependencies": [],
   "keywords": ["marketplace", "installer", "distribution"]
 }

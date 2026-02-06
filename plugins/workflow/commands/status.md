@@ -1,5 +1,5 @@
 ---
-name: workflow:status
+name: status
 description: Check current workflow state and progress
 usage: |
   /workflow:status

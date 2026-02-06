@@ -1,5 +1,5 @@
 ---
-name: workflow:spec
+name: spec
 description: Manually create or validate specs (Block A workflow)
 usage: |
   /workflow:spec create <feature-name>

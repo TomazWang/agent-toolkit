@@ -5,5 +5,10 @@
   "author": {
     "name": "Agent Toolkit"
   },
+  "commands": ["create"],
+  "skills": ["spec-driven-development"],
+  "agents": ["spec-validator"],
+  "hooks": [],
+  "dependencies": [],
   "keywords": ["api", "specification", "openapi", "workflow"]
 }

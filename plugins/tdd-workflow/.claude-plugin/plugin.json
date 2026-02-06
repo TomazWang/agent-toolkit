@@ -5,5 +5,10 @@
   "author": {
     "name": "Agent Toolkit"
   },
+  "commands": ["start"],
+  "skills": ["test-driven-development"],
+  "agents": ["tdd-guide"],
+  "hooks": [],
+  "dependencies": [],
   "keywords": ["testing", "tdd", "quality", "workflow"]
 }
