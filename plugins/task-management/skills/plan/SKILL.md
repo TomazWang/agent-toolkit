@@ -1,5 +1,5 @@
 ---
-name: project-planning
+name: plan
 description: Use when planning a new project or large feature - guides requirements gathering and task decomposition
 ---
 
@@ -93,12 +93,12 @@ Phase 4: Polish
 
 **For each major task:**
 ```bash
-/task create "Task description" --priority <level> --project <name>
+/task-management:tasks create "Task description" --priority <level> --project <name>
 ```
 
 **Link dependencies:**
 ```bash
-/task link TASK-101 blocks TASK-102
+/task-management:tasks link TASK-101 blocks TASK-102
 ```
 
 ### Phase 6: Document the Plan
@@ -210,7 +210,7 @@ Phase 4: Polish (2-3 days)
   TASK-116: Add documentation
   TASK-117: Deploy to production
 
-I'll create these tasks with the /task command. Ready to proceed?
+I'll create these tasks with the /task-management:tasks command. Ready to proceed?
 ```
 
 ## Key Principles

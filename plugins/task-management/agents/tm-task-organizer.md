@@ -1,5 +1,5 @@
 ---
-name: task-organizer
+name: tm-task-organizer
 description: Specialized agent that analyzes tasks and suggests organization improvements
 color: blue
 tools: [Read, Grep, Glob, Bash]

@@ -1,29 +1,30 @@
 ---
-name: task
+name: tasks
 description: Manage development tasks with structured tracking and workflows
-usage: |
-  /task create <description> [--priority low|medium|high|critical] [--project <name>]
-  /task list [--status <status>] [--project <name>] [--priority <priority>]
-  /task show <task-id>
-  /task update <task-id> [--status <status>] [--priority <priority>]
-  /task start <task-id>
-  /task link <task-id> <blocks|depends-on> <other-task-id>
-  /task archive [--before <date>]
-examples:
-  - /task create "Implement OAuth2 flow" --priority high
-  - /task list --status in-progress
-  - /task update TASK-123 --status completed
-  - /task start TASK-101
+argument-hint: |
+  create <description> [--priority low|medium|high|critical] [--project <name>]
+  list [--status <status>] [--project <name>] [--priority <priority>]
+  show <task-id>
+  update <task-id> [--status <status>] [--priority <priority>]
+  start <task-id>
+  link <task-id> <blocks|depends-on> <other-task-id>
+  archive [--before <date>]
 ---
 
-# Task Management Command
+# Task Management Skill
 
-You are helping the user manage their development tasks. Parse the command arguments and execute the requested operation.
+## When to Use
+
+Use this skill when the user wants to:
+- Create, list, update, or manage development tasks
+- Track task status and dependencies
+- Start working on a task
+- Organize tasks by project or priority
+- User invokes `/task-management:tasks` or mentions task management
 
 ## Command Structure
 
-The user's command will be in the format: `/task <subcommand> [args]`
-
+The user's command will be in the format: `/task-management:tasks <subcommand> [args]`
 ## Subcommands
 
 ### create
@@ -170,7 +171,7 @@ Archive completed or old tasks.
 
 **Create task:**
 ```
-User: /task create "Implement user authentication" --priority high --project auth
+User: /task-management:tasks create "Implement user authentication" --priority high --project auth
 
 You: Created task TASK-123: "Implement user authentication"
      Status: backlog
@@ -180,14 +181,14 @@ You: Created task TASK-123: "Implement user authentication"
 
 **List tasks:**
 ```
-User: /task list --status in-progress
+User: /task-management:tasks list --status in-progress
 
 You: [Display table of in-progress tasks]
 ```
 
 **Start task:**
 ```
-User: /task start TASK-123
+User: /task-management:tasks start TASK-123
 
 You: Started TASK-123: "Implement user authentication"
      Created branch: task-123-implement-user-authentication

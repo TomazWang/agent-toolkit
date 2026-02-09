@@ -10,9 +10,8 @@
       "author": "Agent Toolkit",
       "repository": "https://github.com/TomazWang/agent-toolkit",
       "path": "plugins/task-management",
-      "commands": ["task"],
-      "skills": ["task-workflow", "project-planning"],
-      "agents": ["task-organizer"],
+      "skills": ["tasks", "task-workflow", "plan"],
+      "agents": ["tm-task-organizer"],
       "tags": ["workflow", "productivity", "project-management"],
       "dependencies": [],
       "category": "workflow"
