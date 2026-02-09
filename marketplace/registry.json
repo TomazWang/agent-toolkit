@@ -102,7 +102,7 @@
       "version": "1.0.0",
       "description": "Test-Driven Development workflow with RED-GREEN-REFACTOR cycle",
       "author": "Agent Toolkit",
-      "repository": "https://github.com/TomazWang/agent-toolkit",
+      "repository": "https://github.com/TomazWang/agent-toolkit",zZ
       "path": "plugins/tdd-workflow",
       "commands": ["start"],
       "skills": ["test-driven-development"],

@@ -1,0 +1,21 @@
+{
+  "name": "kb",
+  "version": "1.0.0",
+  "description": "Autonomous knowledge base builder - Trigger once, learn entire codebase. Analyzes source code, docs, git history to build institutional knowledge. Focuses on what code actually does vs what docs claim.",
+  "author": {
+    "name": "Agent Toolkit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anthropics/agent-toolkit"
+  },
+  "keywords": [
+    "knowledge-base",
+    "documentation",
+    "code-analysis",
+    "git-history",
+    "autonomous-learning",
+    "institutional-knowledge"
+  ],
+  "license": "MIT"
+}
