@@ -1,6 +1,7 @@
 ---
-name: plugin-development
+name: custom-plugin-development
 description: Complete guide to Claude Code plugin architecture and development
+user-invocable: false
 ---
 
 # Plugin Development Skill
@@ -49,73 +50,57 @@ my-plugin/
 
 ### plugin.json Format
 
-**Required fields**:
+**Minimal format** (recommended - uses auto-discovery):
 ```json
 {
   "name": "my-plugin",
   "version": "1.0.0",
-  "description": "What this plugin does"
+  "description": "What this plugin does",
+  "author": {
+    "name": "Your Name"
+  }
 }
 ```
 
-**Full format**:
+**With optional fields**:
 ```json
 {
   "name": "plugin-name",
   "version": "1.0.0",
   "description": "Clear description of plugin purpose",
-  "author": "Your Name",
-  "commands": ["command1", "command2"],
-  "skills": ["skill1", "skill2"],
-  "agents": ["agent1", "agent2"],
-  "hooks": ["PreToolUse.sh", "SessionStart.sh"],
-  "dependencies": ["other-plugin"],
-  "tags": ["workflow", "development", "tools"]
+  "author": {
+    "name": "Your Name"
+  },
+  "keywords": ["workflow", "development", "tools"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/user/repo"
+  },
+  "license": "MIT",
+  "dependencies": ["other-plugin"]
 }
 ```
 
+**Important**: Commands, skills, agents, and hooks are **auto-discovered** from their directories. Do NOT list them manually in plugin.json.
+
 ## Component Types
 
-### Commands
+### Skills vs Commands
 
-**Purpose**: User-invoked actions via slash commands
+**Both create slash commands**, but skills are preferred for new development:
 
-**When to use**:
-- User needs to trigger specific actions
-- Interactive workflows
-- Tool integration
-- Configuration management
+| Feature          | Commands (`commands/name.md`)      | Skills (`skills/name/SKILL.md`)              |
+| :--------------- | :--------------------------------- | :------------------------------------------- |
+| **Structure**    | Flat .md file                      | Folder with SKILL.md                         |
+| **Invocation**   | `/plugin:command-name`             | `/plugin:skill-name`                         |
+| **Supporting**   | Single file only                   | Multiple files in folder                     |
+| **Features**     | Basic frontmatter                  | `user-invocable`, `disable-model-invocation` |
+| **Status**       | Works, backward compatible         | Preferred, more features                     |
+| **Auto-discover**| From `commands/` directory         | From `skills/` directory                     |
 
-**Structure**:
-```yaml
----
-name: command-name
-description: What the command does
-usage: |
-  /plugin:command <args>
-examples:
-  - /plugin:command example
----
+**Recommendation**: Use skills for new plugins. Commands still work if you prefer flat files.
 
-# Command Name
-
-Command description and implementation guide.
-
-## Arguments
-- arg1: Description
-- arg2: Description
-
-## Process
-1. Step one
-2. Step two
-```
-
-**Naming**: Plugin name is auto-prefixed
-- File: `commands/start.md`
-- Plugin: `workflow`
-- Invoked as: `/workflow:start`
-
-### Skills
+### Skills (Preferred)
 
 **Purpose**: Provide guidance, enforce workflows, share knowledge
 
@@ -234,29 +219,24 @@ Each plugin should have ONE clear purpose:
 
 ### Component Selection
 
-**Use Commands when**:
-- User explicitly invokes action
-- Interactive prompts needed
-- Configuration changes
-- One-time operations
+**Commands/Skills** (user-invocable workflows):
+- User explicitly invokes with `/plugin:name`
+- Interactive prompts and questions
+- Multi-step guided processes
+- Workflow orchestration
+- **Choose skills** over commands for new development (more features)
 
-**Use Skills when**:
-- Teaching methodology
-- Enforcing workflows
-- Multi-step processes
-- Context-sensitive guidance
-
-**Use Agents when**:
-- Autonomous analysis needed
+**Agents** (autonomous specialized workers):
 - Background processing
-- Specialized domain expertise
-- User wants focused work
+- Specialized domain expertise (security, performance)
+- Parallel execution tasks
+- Focused analysis
 
-**Use Hooks when**:
-- Automatic validation needed
-- Event-driven automation
+**Hooks** (event-driven automation):
+- Automatic validation before actions
+- Logging and auditing
 - Cross-cutting concerns
-- Safety checks
+- Safety checks and guardrails
 
 ### Composition Over Monoliths
 

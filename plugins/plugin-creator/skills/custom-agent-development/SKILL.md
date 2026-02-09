@@ -1,6 +1,7 @@
 ---
-name: agent-development
+name: custom-agent-development
 description: Developing specialized agents with focused expertise
+user-invocable: false
 ---
 
 # Agent Development Skill

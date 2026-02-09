@@ -1,6 +1,7 @@
 ---
-name: hook-development
+name: custom-hook-development
 description: Implementing event hooks for PreToolUse, PostToolUse, SessionStart, and other events
+user-invocable: false
 ---
 
 # Hook Development Skill

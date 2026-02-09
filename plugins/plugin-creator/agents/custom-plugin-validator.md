@@ -1,5 +1,5 @@
 ---
-name: plugin-validator
+name: custom-plugin-validator
 description: Validates plugin structure, metadata, and best practices compliance
 color: green
 tools: [Read, Grep, Glob, Bash]

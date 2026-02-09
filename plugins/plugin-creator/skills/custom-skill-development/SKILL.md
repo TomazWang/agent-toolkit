@@ -1,6 +1,7 @@
 ---
-name: skill-development
+name: custom-skill-development
 description: How to create effective skills with proper triggering conditions and structure
+user-invocable: false
 ---
 
 # Skill Development Skill

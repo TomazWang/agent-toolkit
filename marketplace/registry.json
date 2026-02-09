@@ -83,15 +83,16 @@
       "author": "Agent Toolkit",
       "repository": "https://github.com/TomazWang/agent-toolkit",
       "path": "plugins/plugin-creator",
-      "commands": ["plugin"],
       "skills": [
-        "plugin-development",
-        "skill-development",
-        "command-development",
-        "agent-development",
-        "hook-development"
+        "create",
+        "custom-plugin-development",
+        "custom-skill-development",
+        "custom-command-development",
+        "custom-agent-development",
+        "custom-hook-development"
       ],
-      "agents": ["plugin-architect", "plugin-validator"],
+      "description": "Meta-plugin for creating, validating, and managing Claude Code plugins with interactive scaffolding and specialized development guides",
+      "agents": ["custom-plugin-architect", "custom-plugin-validator"],
       "tags": ["meta", "development", "tools"],
       "dependencies": [],
       "category": "meta"

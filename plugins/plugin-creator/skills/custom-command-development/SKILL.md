@@ -1,37 +1,47 @@
 ---
-name: command-development
-description: Creating slash commands with argument parsing and YAML frontmatter
+name: custom-command-development
+description: Commands vs Skills - choosing between commands/ and skills/ for slash commands
+user-invocable: false
 ---
 
-# Command Development Skill
+# Commands vs Skills
 
-Guide to creating effective slash commands for Claude Code plugins.
+Guide to choosing between `commands/` (flat files) and `skills/` (folders) for creating slash commands.
 
 ## When to Use
 
 Activate when:
-- Creating new slash commands
-- User asks about command structure
-- Implementing command arguments
-- Questions about YAML frontmatter
+- User asks "commands or skills?"
+- Discussing command structure
+- Migrating from commands to skills
+- Questions about slash command creation
 
-## What Are Commands?
+## Commands and Skills are Equivalent
 
-Commands are **user-invoked actions** via slash syntax:
-```bash
-/plugin:command argument1 argument2 --flag value
-```
+Both create slash commands that users invoke with `/plugin:name`:
 
-**When to use commands**:
-- User explicitly triggers action
-- Interactive workflows needed
-- Tool integration required
-- Configuration management
+| Aspect        | Commands                         | Skills                                    |
+| :------------ | :------------------------------- | :---------------------------------------- |
+| **Location**  | `commands/name.md`               | `skills/name/SKILL.md`                    |
+| **Invocation**| `/plugin:name`                   | `/plugin:name`                            |
+| **Features**  | Basic frontmatter, arguments     | Advanced frontmatter, supporting files    |
+| **Use case**  | Simple, single-file commands     | Complex workflows, need supporting files  |
+| **Status**    | Works, backward compatible       | **Preferred** for new development         |
 
-**When NOT to use commands**:
-- Automatic guidance → Use Skills
-- Background analysis → Use Agents
-- Event-driven automation → Use Hooks
+## When to Use Each
+
+**Use Skills** (`skills/name/SKILL.md`):
+- **Preferred** for all new development
+- Need supporting files (templates, examples, scripts)
+- Want `user-invocable: false` for background skills
+- Want `disable-model-invocation: true` for manual-only skills
+- Complex workflows needing organization
+
+**Use Commands** (`commands/name.md`):
+- Maintaining existing commands
+- Prefer flat file structure
+- Very simple single-purpose commands
+- Backward compatibility needed
 
 ## Command Structure
 
@@ -761,8 +771,78 @@ Examples:
 Try: /plugin:create my-plugin
 ```
 
-## References
+## Migrating from Commands to Skills
 
-- Official commands documentation: https://code.claude.com/docs/en/commands
-- Plugin reference: https://code.claude.com/docs/en/plugins-reference
+Convert existing commands to skills for additional features:
+
+**1. Create skill folder:**
+```bash
+# Old: commands/deploy.md
+# New: skills/deploy/SKILL.md
+mkdir skills/deploy
+```
+
+**2. Move and rename:**
+```bash
+mv commands/deploy.md skills/deploy/SKILL.md
+```
+
+**3. Update frontmatter** (if needed):
+```yaml
+---
+name: deploy
+description: Deploy application to production
+disable-model-invocation: true  # New feature - manual only
+---
+```
+
+**4. Add supporting files** (if helpful):
+```
+skills/deploy/
+├── SKILL.md                # Main instructions
+├── templates/              # Deployment templates
+│   └── prod-config.yaml
+└── scripts/                # Helper scripts
+    └── verify.sh
+```
+
+**Both work:** Your old `commands/deploy.md` keeps working. Migrate when you need advanced features.
+
+## Key Differences
+
+### Commands Features
+```yaml
+---
+name: review
+description: Review code quality
+usage: |
+  /plugin:review <file>
+examples:
+  - /plugin:review src/app.js
+---
+
+Review instructions...
+```
+
+### Skills Additional Features
+```yaml
+---
+name: review
+description: Review code quality
+argument-hint: <file> [--strict]
+user-invocable: true                    # Can hide from menu
+disable-model-invocation: false         # Can prevent auto-invoke
+allowed-tools: Read, Grep, Glob         # Restrict tool access
+context: fork                           # Can run in subagent
+---
+
+Review instructions...
+
+See [examples.md](examples.md) for patterns.  # Supporting files
+```
+
+## Official Documentation
+
+- Skills (preferred): https://code.claude.com/docs/en/skills
+- Plugin structure: https://code.claude.com/docs/en/plugins
 - Official examples: https://github.com/anthropics/claude-code/tree/main/plugins

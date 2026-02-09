@@ -1,5 +1,5 @@
 ---
-name: plugin-architect
+name: custom-plugin-architect
 description: Designs plugin architecture and component structure
 color: purple
 tools: [Read, Grep, Glob]
