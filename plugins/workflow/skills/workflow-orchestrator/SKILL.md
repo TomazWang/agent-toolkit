@@ -9,7 +9,7 @@ user-invocable: false
 ## When to Use
 
 Auto-activates when:
-- User invokes `/workflow:start`
+- User invokes `/workflow:start-development-workflow`
 - User requests to "build", "implement", "add", "create" features
 - Any development task requiring structured workflow
 
@@ -127,7 +127,7 @@ Stage C: MINIMAL
 ### 1. Initialize
 
 ```bash
-User: /workflow:start "Add user authentication"
+User: /workflow:start-development-workflow "Add user authentication"
 
 Orchestrator:
   1. Analyze request
@@ -142,7 +142,7 @@ Orchestrator:
 
 **Complex:**
 ```
-→ Invoke: /workflow:spec-stage --mode=full
+→ Invoke: /workflow:create-workflow-spec-stage --mode=full
   1. Research phase
   2. Create OpenAPI spec (using OpenSpec format)
   3. Generate PoC tests (invoke meta-validator agent)
@@ -152,7 +152,7 @@ Orchestrator:
 
 **Medium:**
 ```
-→ Invoke: /workflow:spec-stage --mode=light
+→ Invoke: /workflow:create-workflow-spec-stage --mode=light
   1. Review existing spec
   2. Create spec change document
   3. Get user approval
@@ -239,7 +239,7 @@ fi
 ### SDD Integration
 ```
 For Stage A:
-  - Use /workflow:spec-driven-development
+  - Use /workflow:create-workflow-spec-driven-development
   - Create OpenAPI/AsyncAPI specs
 ```
 
@@ -299,7 +299,7 @@ current_block: B
 
 **Starting workflow:**
 ```
-User: /workflow:start "Add payment processing"
+User: /workflow:start-development-workflow "Add payment processing"
 
 Orchestrator:
   🔍 Analyzing request...
@@ -340,12 +340,12 @@ The orchestrator provides:
 
 **Start workflow:**
 ```bash
-/workflow:start "<description>"
+/workflow:start-development-workflow "<description>"
 ```
 
 **Check status:**
 ```bash
-/workflow:status
+/workflow:check-workflow-status
 # Shows current block, progress, next steps
 ```
 
@@ -357,7 +357,7 @@ The orchestrator provides:
 
 **Override complexity:**
 ```bash
-/workflow:start "<description>" --complexity=simple
+/workflow:start-development-workflow "<description>" --complexity=simple
 # Force simple workflow
 ```
 
@@ -408,7 +408,7 @@ Resume anytime with: /workflow:resume
 
 **Complex Project:**
 ```
-/workflow:start "Build real-time chat system"
+/workflow:start-development-workflow "Build real-time chat system"
 → Complexity: COMPLEX
 → Stage A: Full spec + PoC (30 min)
 → Stage B: BDD + TDD (2 hours)
@@ -418,7 +418,7 @@ Total: ~5.5 hours
 
 **Medium Feature:**
 ```
-/workflow:start "Add email notifications"
+/workflow:start-development-workflow "Add email notifications"
 → Complexity: MEDIUM
 → Stage A: Spec change (10 min)
 → Stage B: BDD + TDD (1 hour)
@@ -428,7 +428,7 @@ Total: ~2 hours
 
 **Simple Fix:**
 ```
-/workflow:start "Fix login button styling"
+/workflow:start-development-workflow "Fix login button styling"
 → Complexity: SIMPLE
 → Stage A: SKIP
 → Stage B: Direct TDD (15 min)

@@ -6,7 +6,7 @@ description: |
   Use when:
   - User provides gdrive://, figma://, notion:// URLs
   - Need to analyze design documents or cloud-hosted docs
-  - Invokes /kb:add-source with cloud URL
+  - Invokes /kb:add-kb-source with cloud URL
 
   Requires MCP servers configured in .mcp.json
 ---
@@ -157,13 +157,13 @@ Input: confluence://SPACE/Page+Title
 
 ```bash
 # Add a Google Slides presentation
-/kb:add-source gdrive://1ABC123def456
+/kb:add-kb-source gdrive://1ABC123def456
 
 # Add a Figma design file
-/kb:add-source figma://ABC123XYZ
+/kb:add-kb-source figma://ABC123XYZ
 
 # Add Notion documentation
-/kb:add-source notion://page-uuid-here
+/kb:add-kb-source notion://page-uuid-here
 ```
 
 ### During Learning

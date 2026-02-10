@@ -73,7 +73,7 @@ Work through tasks with live tracking.
 ## Example
 
 ```
-User: /workflow:plan "Add email validation"
+User: /workflow:plan-simple-workflow "Add email validation"
 
 Quick research: (30 seconds)
 → Signup form has no validation

@@ -182,11 +182,11 @@ cd kb/sources/repos/target-repo
 # → Identifies main domains and tech stack
 
 # 3. Plan based on overview
-/kb:plan
+/kb:plan-kb-learning
 # → Create learning plan from overview
 
 # 4. Learn topic with pattern search
-/kb:learn authentication
+/kb:learn-kb-topic authentication
 /sourceatlas:pattern "auth"
 /sourceatlas:flow "login"
 

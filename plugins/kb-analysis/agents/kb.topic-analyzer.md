@@ -3,7 +3,7 @@ name: kb.topic-analyzer
 description: |
   Analyzes codebase structure to identify learning topics. Use when:
   - Starting KB analysis and need to identify what to learn
-  - Called during the planning phase of /kb:start
+  - Called during the planning phase of /kb:start-knowledge-base
   - Need to discover all areas of a codebase
 
   Scans directory structure, key files, and patterns to build topic list.

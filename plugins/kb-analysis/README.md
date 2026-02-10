@@ -8,7 +8,7 @@ Analyzes source code, documentation, git history, and cloud documents to build i
 
 ```bash
 # Start autonomous learning
-/kb:start
+/kb:start-knowledge-base
 
 # That's it! The AI will:
 # 1. Set up KB structure
@@ -35,7 +35,7 @@ ln -s $(pwd)/plugins/kb-analysis ~/.claude/plugins/kb-analysis
 │                  AUTONOMOUS WORKFLOW                         │
 ├─────────────────────────────────────────────────────────────┤
 │                                                              │
-│  /kb:start                                                   │
+│  /kb:start-knowledge-base                                                   │
 │      │                                                       │
 │      ▼                                                       │
 │  ┌──────────┐                                               │
@@ -82,12 +82,12 @@ ln -s $(pwd)/plugins/kb-analysis ~/.claude/plugins/kb-analysis
 
 | Command | Purpose |
 |---------|---------|
-| `/kb:start [scope]` | Start autonomous learning (optional: focus area) |
-| `/kb:status` | Check progress and get guidance |
-| `/kb:learn <topic>` | Learn specific topic manually |
-| `/kb:distill` | Generate final knowledge base |
-| `/kb:add-source <path>` | Add files or cloud sources |
-| `/kb:plan` | View/edit learning plan |
+| `/kb:start-knowledge-base [scope]` | Start autonomous learning (optional: focus area) |
+| `/kb:check-kb-status` | Check progress and get guidance |
+| `/kb:learn-kb-topic <topic>` | Learn specific topic manually |
+| `/kb:distill-kb-knowledge` | Generate final knowledge base |
+| `/kb:add-kb-source <path>` | Add files or cloud sources |
+| `/kb:plan-kb-learning` | View/edit learning plan |
 
 ## Agents
 
@@ -111,8 +111,8 @@ Fetch from cloud platforms via MCP integration:
 
 ```bash
 # Add cloud sources
-/kb:add-source gdrive://1ABC123def456
-/kb:add-source figma://XYZ789
+/kb:add-kb-source gdrive://1ABC123def456
+/kb:add-kb-source figma://XYZ789
 ```
 
 ## Output Structure

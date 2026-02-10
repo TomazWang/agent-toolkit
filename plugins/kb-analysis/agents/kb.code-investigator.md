@@ -2,7 +2,7 @@
 name: kb.code-investigator
 description: |
   Deep dives into a single topic, tracing code paths and dependencies. Use when:
-  - Learning a specific topic during /kb:learn
+  - Learning a specific topic during /kb:learn-kb-topic
   - Need to understand how a feature actually works
   - Tracing execution flow through codebase
 

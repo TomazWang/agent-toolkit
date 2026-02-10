@@ -128,17 +128,17 @@ This plugin synthesizes patterns from:
 
 ## Commands
 
-### `/workflow:start <description>`
+### `/workflow:start-development-workflow <description>`
 
 **Main entry point.** Analyzes complexity and orchestrates the flow.
 
 ```bash
 # Auto-detect complexity
-/workflow:start "Add OAuth2 authentication"
+/workflow:start-development-workflow "Add OAuth2 authentication"
 
 # Override complexity
-/workflow:start "Build payment system" --complexity=complex
-/workflow:start "Fix button styling" --complexity=simple
+/workflow:start-development-workflow "Build payment system" --complexity=complex
+/workflow:start-development-workflow "Fix button styling" --complexity=simple
 ```
 
 **The orchestrator will:**
@@ -148,12 +148,12 @@ This plugin synthesizes patterns from:
 4. Show workflow plan
 5. Execute stages sequentially
 
-### `/workflow:status`
+### `/workflow:check-workflow-status`
 
 Check current workflow progress.
 
 ```bash
-/workflow:status
+/workflow:check-workflow-status
 
 # Shows:
 # - Current stage (A/B/C)
@@ -162,12 +162,12 @@ Check current workflow progress.
 # - Next steps
 ```
 
-### `/workflow:spec`
+### `/workflow:create-workflow-spec`
 
 Manually work on Stage A (specification).
 
 ```bash
-/workflow:spec "User Authentication API"
+/workflow:create-workflow-spec "User Authentication API"
 ```
 
 ## Integration with Other Plugins
@@ -207,7 +207,7 @@ The **workflow-orchestrator** skill is the brain of the system:
 ## Example: Complex Project
 
 ```bash
-User: /workflow:start "Add payment processing with Stripe"
+User: /workflow:start-development-workflow "Add payment processing with Stripe"
 
 Orchestrator Analysis:
   Complexity: COMPLEX
@@ -267,7 +267,7 @@ Stage C: Execution
 ## Example: Simple Task
 
 ```bash
-User: /workflow:start "Fix login button alignment"
+User: /workflow:start-development-workflow "Fix login button alignment"
 
 Orchestrator Analysis:
   Complexity: SIMPLE
@@ -318,10 +318,10 @@ Custom settings and notes for this project.
 ## Skills Included
 
 **User-invocable:**
-- **start**: Start new workflow with complexity detection (`/workflow:start`)
-- **spec**: Manually work on Stage A specification (`/workflow:spec`)
-- **status**: Check current workflow progress (`/workflow:status`)
-- **plan**: Create simple plans for straightforward tasks (`/workflow:plan`)
+- **start**: Start new workflow with complexity detection (`/workflow:start-development-workflow`)
+- **spec**: Manually work on Stage A specification (`/workflow:create-workflow-spec`)
+- **status**: Check current workflow progress (`/workflow:check-workflow-status`)
+- **plan**: Create simple plans for straightforward tasks (`/workflow:plan-simple-workflow`)
 
 **Auto-activating:**
 - **workflow-orchestrator**: Main conductor that orchestrates stages

@@ -39,7 +39,7 @@ When a user needs help, explain:
 ║                                                                ║
 ║  SIMPLEST WAY TO START:                                        ║
 ║  ─────────────────────                                         ║
-║  Just run:  /kb:start                                          ║
+║  Just run:  /kb:start-knowledge-base                                          ║
 ║                                                                ║
 ║  That's it! The AI will:                                       ║
 ║  1. Set up the knowledge base structure                        ║
@@ -59,10 +59,10 @@ When a user needs help, explain:
 
 | Command | Purpose |
 |---------|---------|
-| `/kb:start` | Start autonomous learning (recommended) |
-| `/kb:start auth` | Focus learning on specific area |
-| `/kb:status` | Check progress |
-| `/kb:learn <topic>` | Learn one topic manually |
+| `/kb:start-knowledge-base` | Start autonomous learning (recommended) |
+| `/kb:start-knowledge-base auth` | Focus learning on specific area |
+| `/kb:check-kb-status` | Check progress |
+| `/kb:learn-kb-topic <topic>` | Learn one topic manually |
 | `/kb:distill` | Generate final output |
 | `/kb:add-source <path>` | Add more sources |
 
@@ -84,7 +84,7 @@ Yes! Add any source:
 
 ### "What if learning stops?"
 
-Just run `/kb:start` again - it will resume from where it left off.
+Just run `/kb:start-knowledge-base` again - it will resume from where it left off.
 
 ### "Where is the output?"
 
@@ -103,11 +103,11 @@ kb/output/
 
 ## Best Practices to Share
 
-1. **Start simple**: Just `/kb:start` - don't overthink it
+1. **Start simple**: Just `/kb:start-knowledge-base` - don't overthink it
 
 2. **Let it run**: The AI will keep going until done
 
-3. **Check status**: Use `/kb:status` to see progress
+3. **Check status**: Use `/kb:check-kb-status` to see progress
 
 4. **Add context**: If you have design docs or specs, add them:
    ```
@@ -127,13 +127,13 @@ kb/output/
 
 The codebase might be too small or lack clear structure. Try:
 - Adding more source files
-- Specifying a focus area: `/kb:start api`
+- Specifying a focus area: `/kb:start-knowledge-base api`
 
 ### "Learning seems stuck"
 
-Check `/kb:status` - if a topic is 🔄 In Progress for too long:
+Check `/kb:check-kb-status` - if a topic is 🔄 In Progress for too long:
 - The AI might be doing deep analysis
-- Run `/kb:start` to resume
+- Run `/kb:start-knowledge-base` to resume
 
 ### "Missing cloud sources"
 
@@ -148,7 +148,7 @@ For Google Docs, Figma, etc., configure credentials:
 
 When helping users, emphasize:
 
-1. **Simplicity**: `/kb:start` handles everything
+1. **Simplicity**: `/kb:start-knowledge-base` handles everything
 2. **Autonomy**: The AI keeps going without prompts
 3. **Quality**: One topic at a time = better results
 4. **Truth**: Code is the source of truth, not docs

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Collaborative design and specification development through guided brainstorming",
   "author": {
-    "name": "Agent Toolkit"
+    "name": "Tomaz Wang"
   },
+  "repository": "https://github.com/TomazWang/agent-toolkit",
   "keywords": ["design", "planning", "collaboration"]
 }

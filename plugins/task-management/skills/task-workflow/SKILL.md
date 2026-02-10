@@ -22,7 +22,7 @@ Use this skill when beginning any development task that involves multiple steps 
 First, check if a task already exists for this work:
 
 ```bash
-/task-management:tasks list --status backlog,ready,in-progress
+/task-management:manage-tasks list --status backlog,ready,in-progress
 ```
 
 If no task exists and this is non-trivial work, ask user:
@@ -84,7 +84,7 @@ As you work:
 When finished:
 - Verify all todos are completed
 - Run tests and validation
-- Update task status: `/task-management:tasks update TASK-123 --status completed`
+- Update task status: `/task-management:manage-tasks update TASK-123 --status completed`
 - Create commit or PR
 
 ## Integration with Other Skills
@@ -109,7 +109,7 @@ Assistant (using task-workflow skill):
 
 I'll help you add dark mode. Let me check if there's an existing task...
 
-[Checks /task-management:tasks list]
+[Checks /task-management:manage-tasks list]
 
 No existing task found. Let me break this down:
 

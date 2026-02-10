@@ -75,7 +75,7 @@ plugin-name/
   - Block B: Normal features → Spec Change + TDD
   - Block C: Simple tasks → Simple Planning
   - Auto-detects complexity and routes appropriately
-  - Commands: `/workflow:start`, `/workflow:spec`, `/workflow:plan`, `/workflow:status`
+  - Commands: `/workflow:start-development-workflow`, `/workflow:create-workflow-spec`, `/workflow:plan-simple-workflow`, `/workflow:check-workflow-status`
 - **task-management**: Structured task tracking with TodoWrite integration, git branch linking, and dependency management
 - **brainstorming**: Idea → Design → Documentation workflow with incremental validation, 5 modes (free exploration, structured, sprint, alternatives, roleplay)
 
@@ -110,7 +110,7 @@ The **workflow** plugin implements a unified development workflow with automatic
 4. Approve spec before implementation
 5. Implement against validated spec
 
-**Command**: `/workflow:start "requirement"` → Auto-routes to Block A if complex
+**Command**: `/workflow:start-development-workflow "requirement"` → Auto-routes to Block A if complex
 
 ### Block B: Spec Change + TDD (Medium)
 **For**: Normal features, existing spec, 8-15 steps, moderate complexity
@@ -121,7 +121,7 @@ The **workflow** plugin implements a unified development workflow with automatic
 3. Implement against spec
 4. Validate with tests
 
-**Command**: `/workflow:start "requirement"` → Auto-routes to Block B if medium
+**Command**: `/workflow:start-development-workflow "requirement"` → Auto-routes to Block B if medium
 
 ### Block C: Simple Planning (Simple)
 **For**: Quick tasks, bug fixes, <8 steps, single-file changes
@@ -131,14 +131,14 @@ The **workflow** plugin implements a unified development workflow with automatic
 2. Execute directly
 3. Verify completion
 
-**Command**: `/workflow:start "requirement"` → Auto-routes to Block C if simple
+**Command**: `/workflow:start-development-workflow "requirement"` → Auto-routes to Block C if simple
 
 ### Auto-Detection
 
 The workflow-router skill analyzes requirements and routes to appropriate block:
 
 ```
-/workflow:start "Implement user authentication"
+/workflow:start-development-workflow "Implement user authentication"
   ↓
 Detects: Complex (security-critical, new feature)
   ↓
@@ -149,9 +149,9 @@ Guides through: Spec → PoC → Validation → Implementation
 
 **Manual override**:
 ```bash
-/workflow:start "requirement" --block a  # Force Block A
-/workflow:start "requirement" --block b  # Force Block B
-/workflow:start "requirement" --block c  # Force Block C
+/workflow:start-development-workflow "requirement" --block a  # Force Block A
+/workflow:start-development-workflow "requirement" --block b  # Force Block B
+/workflow:start-development-workflow "requirement" --block c  # Force Block C
 ```
 
 ### Integration with Other Plugins

@@ -137,7 +137,7 @@ paths:
 
 ```bash
 # 1. Start with OpenSpec
-/workflow:start "Add payment processing API"
+/workflow:start-development-workflow "Add payment processing API"
 
 # Auto-detects openspec/ directory
 
@@ -256,7 +256,7 @@ paths:
 
 **Create OpenSpec spec:**
 ```bash
-/workflow:spec "User API"
+/workflow:create-workflow-spec "User API"
 → Detects openspec/ directory
 → Creates openspec/spec/user-api.yaml
 → Version 0.1.0 DRAFT
@@ -265,7 +265,7 @@ paths:
 
 **Update spec iteratively:**
 ```bash
-/workflow:spec-update
+/workflow:create-workflow-spec-update
 → Opens current spec
 → Marks changes with version bump
 → Logs evolution in spec comments
@@ -273,7 +273,7 @@ paths:
 
 **Validate spec:**
 ```bash
-/workflow:spec-validate
+/workflow:create-workflow-spec-validate
 → OpenAPI validation
 → Check status markers
 → Identify DRAFT sections needing attention

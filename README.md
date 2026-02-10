@@ -20,14 +20,14 @@ Agent Toolkit provides modular plugins that extend Claude Code with systematic w
 **Complexity Modes**: Complex (full validation), Medium (streamlined), Simple (minimal)
 
 **Skills**:
-- `/workflow:start` - Auto-detect complexity and orchestrate workflow
-- `/workflow:status` - Check current progress
-- `/workflow:spec` - Work on specification stage
-- `/workflow:plan` - Create simple plans
+- `/workflow:start-development-workflow` - Auto-detect complexity and orchestrate workflow
+- `/workflow:check-workflow-status` - Check current progress
+- `/workflow:create-workflow-spec` - Work on specification stage
+- `/workflow:plan-simple-workflow` - Create simple plans
 
 **Integrations**: OpenSpec, task-management, automatic complexity detection
 
-**Auto-activating Skills**: `workflow-orchestrator`, `stage-spec`, `stage-dev`, `stage-exec`, `spec-driven-development`, `behavior-driven`, `test-driven-development`, `openspec-integration`, `task-integration`, `meta-testing`
+**Auto-activating Skills**: `workflow-orchestrator`, `stage-spec`, `stage-dev`, `stage-exec`, `spec-driven-development`, `behavior-driven-development`, `test-driven-development`, `openspec-integration`, `task-integration`, `meta-testing`
 
 **Agents**: `workflow-meta-validator`
 
@@ -44,8 +44,8 @@ Agent Toolkit provides modular plugins that extend Claude Code with systematic w
 - Priority levels and status tracking
 
 **Skills**:
-- `/task-management:tasks` - Create, list, update, manage tasks
-- `/task-management:plan` - Project planning workflows
+- `/task-management:manage-tasks` - Create, list, update, manage tasks
+- `/task-management:plan-project` - Project planning workflows
 - `task-workflow` - Multi-step task breakdown (auto-activates)
 
 **Agents**: `tm-task-organizer`
@@ -63,9 +63,8 @@ Agent Toolkit provides modular plugins that extend Claude Code with systematic w
 - Automated report generation
 
 **Skills**:
-- `/code-review:review` - Launch comprehensive review
+- `/code-review:code-review` - Launch comprehensive review
 - `reviewing-code` - Code review patterns (auto-activates)
-- `security-analysis` - Security-focused review
 
 **Agents**: `cr-architecture-reviewer`, `cr-security-reviewer`, `cr-test-coverage-reviewer`, `cr-performance-reviewer`, `cr-style-reviewer`
 
@@ -101,8 +100,8 @@ Agent Toolkit provides modular plugins that extend Claude Code with systematic w
 - Best practices enforcement
 
 **Skills**:
-- `/plugin-creator:create` - Create new plugin
-- `/plugin-creator:validation` - Validate plugin structure
+- `/plugin-creator:create-plugin` - Create new plugin
+- `/plugin-creator:validate-plugin-structure` - Validate plugin structure
 - `plugin-development` - Plugin architecture guide (auto-activates)
 - `skill-development` - Skill creation guide (auto-activates)
 - `command-development` - Commands vs Skills guide (auto-activates)
@@ -124,11 +123,11 @@ Agent Toolkit provides modular plugins that extend Claude Code with systematic w
 - Institutional knowledge capture
 
 **Skills**:
-- `/kb:start` - Autonomous learning (trigger once)
-- `/kb:plan` - Create/update learning plan
-- `/kb:status` - Check progress
-- `/kb:add-source` - Add sources
-- `git-analysis`, `doc-converter`, `sourceatlas`, `cloud-sources`, and more
+- `/kb:start-knowledge-base` - Autonomous learning (trigger once)
+- `/kb:plan-kb-learning` - Create/update learning plan
+- `/kb:check-kb-status` - Check progress
+- `/kb:add-kb-source` - Add sources
+- `analyze-git-history`, `convert-documents`, `sourceatlas-integration`, `fetch-cloud-sources`, and more
 
 **Agents**: `kb.guide`, `kb.topic-analyzer`, `kb.discrepancy-hunter`, `kb.code-investigator`
 
@@ -166,7 +165,7 @@ ln -s $(pwd)/plugins/workflow ~/.claude/plugins/workflow
 
 ```bash
 # Start workflow with auto-complexity detection
-/workflow:start "Add OAuth2 authentication"
+/workflow:start-development-workflow "Add OAuth2 authentication"
 
 # The orchestrator will:
 # 1. Detect complexity (complex/medium/simple)
@@ -179,29 +178,29 @@ ln -s $(pwd)/plugins/workflow ~/.claude/plugins/workflow
 
 ```bash
 # Create task
-/task-management:tasks create "Implement payment API" --priority high
+/task-management:manage-tasks create "Implement payment API" --priority high
 
 # List tasks
-/task-management:tasks list --status in-progress
+/task-management:manage-tasks list --status in-progress
 
 # Start working on task
-/task-management:tasks start TASK-123
+/task-management:manage-tasks start TASK-123
 
 # Plan a project
-/task-management:plan
+/task-management:plan-project
 ```
 
 ### Code Review
 
 ```bash
 # Review current changes
-/code-review:review
+/code-review:code-review
 
 # Review specific PR
-/code-review:review --pr 123
+/code-review:code-review --pr 123
 
 # Focus on security and performance
-/code-review:review --focus security,performance
+/code-review:code-review --focus security,performance
 ```
 
 ## 🏗️ Plugin Structure

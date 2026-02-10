@@ -2,14 +2,14 @@
 name: brainstorm
 description: Flexible AI-assisted brainstorming for any creative challenge
 usage: |
-  /brainstorm <challenge>
-  /brainstorm <challenge> --mode <free|structured|sprint|alternatives|roleplay>
-  /brainstorm <challenge> --template <lightweight|detailed|creative>
+  /brainstorming:brainstorm <challenge>
+  /brainstorming:brainstorm <challenge> --mode <free|structured|sprint|alternatives|roleplay>
+  /brainstorming:brainstorm <challenge> --template <lightweight|detailed|creative>
 examples:
-  - /brainstorm "Design a file upload system"
-  - /brainstorm "Plan my wedding" --mode free
-  - /brainstorm "Marketing campaign" --mode sprint
-  - /brainstorm "Product pricing strategy" --template detailed
+  - /brainstorming:brainstorm "Design a file upload system"
+  - /brainstorming:brainstorm "Plan my wedding" --mode free
+  - /brainstorming:brainstorm "Marketing campaign" --mode sprint
+  - /brainstorming:brainstorm "Product pricing strategy" --template detailed
 ---
 
 # Brainstorm Command

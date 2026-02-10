@@ -19,33 +19,33 @@ This plugin is inspired by patterns from:
 
 ## Skills
 
-### `/task-management:tasks`
+### `/task-management:manage-tasks`
 
 **Main task management skill** with subcommand-style arguments for managing development tasks.
 
 ```bash
 # Create a new task
-/task-management:tasks create "Implement user authentication"
+/task-management:manage-tasks create "Implement user authentication"
 
 # Create with metadata
-/task-management:tasks create "Fix login bug" --priority high --project auth
+/task-management:manage-tasks create "Fix login bug" --priority high --project auth
 
 # List tasks
-/task-management:tasks list
-/task-management:tasks list --status in-progress
-/task-management:tasks list --project frontend
+/task-management:manage-tasks list
+/task-management:manage-tasks list --status in-progress
+/task-management:manage-tasks list --project frontend
 
 # Update task status
-/task-management:tasks update TASK-123 --status completed
+/task-management:manage-tasks update TASK-123 --status completed
 
 # Show task details
-/task-management:tasks show TASK-123
+/task-management:manage-tasks show TASK-123
 
 # Link tasks with dependencies
-/task-management:tasks link TASK-123 blocks TASK-124
+/task-management:manage-tasks link TASK-123 blocks TASK-124
 
 # Archive completed tasks
-/task-management:tasks archive --before 2026-01-01
+/task-management:manage-tasks archive --before 2026-01-01
 ```
 
 **Subcommands:**
@@ -57,13 +57,13 @@ This plugin is inspired by patterns from:
 - `link` - Create dependency relationships between tasks
 - `archive` - Archive completed or old tasks
 
-### `/task-management:plan`
+### `/task-management:plan-project`
 
 **Project planning skill** for planning new projects or large features.
 
 ```bash
 # Invoke directly for planning
-/task-management:plan
+/task-management:plan-project
 ```
 
 Guides you through:
@@ -109,8 +109,8 @@ Specialized agent that analyzes your current work and:
 
 1. **Create tasks** for your work:
    ```bash
-   /task-management:tasks create "Add dark mode toggle"
-   /task-management:tasks create "Update theme system"
+   /task-management:manage-tasks create "Add dark mode toggle"
+   /task-management:manage-tasks create "Update theme system"
    ```
 
 2. **The task-workflow skill** automatically activates during implementation
@@ -119,7 +119,7 @@ Specialized agent that analyzes your current work and:
 
 4. **Mark complete** as you finish:
    ```bash
-   /task-management:tasks update TASK-123 --status completed
+   /task-management:manage-tasks update TASK-123 --status completed
    ```
 
 ### Advanced Features
@@ -129,8 +129,8 @@ Specialized agent that analyzes your current work and:
 Create relationships between tasks:
 
 ```bash
-/task-management:tasks link TASK-101 blocks TASK-102
-/task-management:tasks link TASK-102 depends-on TASK-101
+/task-management:manage-tasks link TASK-101 blocks TASK-102
+/task-management:manage-tasks link TASK-102 depends-on TASK-101
 ```
 
 #### Project Organization
@@ -138,8 +138,8 @@ Create relationships between tasks:
 Group related tasks:
 
 ```bash
-/task-management:tasks create "Setup CI/CD" --project infrastructure
-/task-management:tasks list --project infrastructure
+/task-management:manage-tasks create "Setup CI/CD" --project infrastructure
+/task-management:manage-tasks list --project infrastructure
 ```
 
 #### Priority Management
@@ -147,8 +147,8 @@ Group related tasks:
 Set and filter by priority:
 
 ```bash
-/task-management:tasks update TASK-123 --priority critical
-/task-management:tasks list --priority high,critical
+/task-management:manage-tasks update TASK-123 --priority critical
+/task-management:manage-tasks list --priority high,critical
 ```
 
 #### Start Working on a Task
@@ -156,7 +156,7 @@ Set and filter by priority:
 Sets status and creates git branch:
 
 ```bash
-/task-management:tasks start TASK-123
+/task-management:manage-tasks start TASK-123
 # Creates branch: task-123-implement-auth
 # Sets status: in-progress
 # Adds TodoWrite items
@@ -191,7 +191,7 @@ Tasks automatically create and track git branches:
 
 ```bash
 # Creates branch: task-123-implement-auth
-/task-management:tasks start TASK-123
+/task-management:manage-tasks start TASK-123
 
 # Automatically includes task ID in commits
 git commit -m "Add login form [TASK-123]"
@@ -205,10 +205,10 @@ Use task-management for tracking, workflow for execution:
 
 ```bash
 # Plan the work
-/task-management:plan
+/task-management:plan-project
 
 # Create tasks
-/task-management:tasks create "Implement feature A"
+/task-management:manage-tasks create "Implement feature A"
 
 # Execute with workflow
 /workflow:start "Implement feature A"
@@ -223,7 +223,7 @@ Use brainstorming for design, task-management for tracking:
 /brainstorming:brainstorm
 
 # Create tasks from design
-/task-management:tasks create "Implement design decisions"
+/task-management:manage-tasks create "Implement design decisions"
 ```
 
 ## Task File Structure
@@ -285,19 +285,19 @@ Available statuses (configurable):
 
 ```bash
 # Plan a new feature
-/task-management:plan
+/task-management:plan-project
 # > Guides through requirements and architecture
 
 # Create tasks from plan
-/task-management:tasks create "Setup database schema" --priority high --project blog
-/task-management:tasks create "Implement post CRUD" --priority high --project blog
-/task-management:tasks create "Add markdown rendering" --priority medium --project blog
+/task-management:manage-tasks create "Setup database schema" --priority high --project blog
+/task-management:manage-tasks create "Implement post CRUD" --priority high --project blog
+/task-management:manage-tasks create "Add markdown rendering" --priority medium --project blog
 
 # Link dependencies
-/task-management:tasks link TASK-101 blocks TASK-102
+/task-management:manage-tasks link TASK-101 blocks TASK-102
 
 # Start working
-/task-management:tasks start TASK-101
+/task-management:manage-tasks start TASK-101
 # > Creates branch: task-101-setup-database-schema
 # > Sets status: in-progress
 # > Adds TodoWrite items
@@ -305,10 +305,10 @@ Available statuses (configurable):
 # ... work on task ...
 
 # Complete task
-/task-management:tasks update TASK-101 --status completed
+/task-management:manage-tasks update TASK-101 --status completed
 
 # Check what's next
-/task-management:tasks list --status ready
+/task-management:manage-tasks list --status ready
 ```
 
 ## Troubleshooting

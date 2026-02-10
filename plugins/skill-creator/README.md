@@ -18,12 +18,12 @@ A dedicated skill-creator makes this process streamlined and error-free.
 
 ## Skills
 
-### `/skill-creator:create <skill-name>`
+### `/skill-creator:create-skill <skill-name>`
 
 Interactive skill creation wizard.
 
 ```bash
-/skill-creator:create analyze-code
+/skill-creator:create-skill analyze-code
 
 # Guides you through:
 # 1. Skill metadata (name, description)
@@ -61,12 +61,12 @@ Test skill activation and invocation.
 # - User invocation
 ```
 
-### `/skill-creator:templates`
+### `/skill-creator:skill-templates`
 
 Browse skill templates for common patterns.
 
 ```bash
-/skill-creator:templates
+/skill-creator:skill-templates
 
 # Shows templates for:
 # - Auto-activating skills
@@ -99,7 +99,7 @@ Validates skill structure and content.
 
 ```bash
 # 1. Create skill
-/skill-creator:create my-skill
+/skill-creator:create-skill my-skill
 
 # 2. Skill architect asks:
 #    - What does this skill do?
@@ -230,8 +230,8 @@ User wants to learn TDD:
 
 # Then add skills
 cd plugins/my-plugin
-/skill-creator:create analyze
-/skill-creator:create format
+/skill-creator:create-skill analyze
+/skill-creator:create-skill format
 ```
 
 ### With workflow

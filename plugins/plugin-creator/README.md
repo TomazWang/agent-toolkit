@@ -23,13 +23,13 @@ This meta-plugin helps you create new plugins, skills, commands, agents, and hoo
 
 ## Skills
 
-### `/plugin-creator:create`
+### `/plugin-creator:create-plugin`
 
 **Main skill** for interactive plugin scaffolding.
 
 ```bash
 # Create new plugin
-/plugin-creator:create my-workflow-plugin
+/plugin-creator:create-plugin my-workflow-plugin
 
 # The skill guides you through:
 # - Plugin metadata
@@ -53,16 +53,16 @@ my-workflow-plugin/
 └── README.md
 ```
 
-### `/plugin-creator:validation`
+### `/plugin-creator:validate-plugin-structure`
 
 Schema-based plugin validation using reference schemas.
 
 ```bash
 # Validate current plugin
-/plugin-creator:validation
+/plugin-creator:validate-plugin-structure
 
 # Or specify path
-/plugin-creator:validation /path/to/plugin
+/plugin-creator:validate-plugin-structure /path/to/plugin
 ```
 
 Validates against schemas in `skills/validation/schema/`:
@@ -196,7 +196,7 @@ Validates plugin structure, metadata, and best practices compliance.
 ### Phase 1: Initialize
 
 ```bash
-/plugin-creator:create my-awesome-plugin
+/plugin-creator:create-plugin my-awesome-plugin
 ```
 
 **What happens:**
@@ -249,7 +249,7 @@ The `hook-development` skill auto-activates and shows you:
 cd plugins/my-awesome-plugin
 
 # Validate (invokes plugin-creator.plugin-validator agent)
-/plugin-creator:validation
+/plugin-creator:validate-plugin-structure
 ```
 
 **Validator checks:**
@@ -286,7 +286,7 @@ Based on testing:
 
 ```bash
 # Invoke the main skill
-/plugin-creator:create task-automation
+/plugin-creator:create-plugin task-automation
 
 # Follow the interactive prompts
 ```
@@ -298,7 +298,7 @@ Based on testing:
 cd plugins/my-plugin
 
 # Then validate it (the validator agent will be invoked)
-/plugin-creator:validation
+/plugin-creator:validate-plugin-structure
 ```
 
 ## Key Concepts
@@ -394,7 +394,7 @@ The plugin-creator integrates with the workflow plugin:
 
 - **Start with architecture**: The `plugin-creator.plugin-architect` agent will help design your plugin structure
 - **Reference examples**: Look at existing plugins in agent-toolkit
-- **Validate early**: Run `/plugin-creator:validation` after creating each component
+- **Validate early**: Run `/plugin-creator:validate-plugin-structure` after creating each component
 - **Use validation schemas**: Reference schema files in `skills/validation/schema/` for correct formats
 - **Test thoroughly**: Install and test plugin before distributing
 - **For skills**: Use the skill-creator spin-off plugin for focused skill development
@@ -434,7 +434,7 @@ These schemas are shared between the validation skill and validator agents, ensu
 ### Creating a Workflow Plugin
 
 ```bash
-/plugin-creator:create my-workflow
+/plugin-creator:create-plugin my-workflow
 
 # Add skills:
 # - orchestrator (user-invocable)
@@ -445,7 +445,7 @@ These schemas are shared between the validation skill and validator agents, ensu
 ### Creating an Analysis Plugin
 
 ```bash
-/plugin-creator:create code-analyzer
+/plugin-creator:create-plugin code-analyzer
 
 # Add agents (use plugin-specific prefix):
 # - ca-security-analyzer
@@ -459,7 +459,7 @@ These schemas are shared between the validation skill and validator agents, ensu
 ### Creating a Helper Plugin
 
 ```bash
-/plugin-creator:create dev-utils
+/plugin-creator:create-plugin dev-utils
 
 # Add skills:
 # - format-code

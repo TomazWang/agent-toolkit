@@ -14,7 +14,7 @@ description: |
 
 Set up knowledge base structure and prepare source materials.
 
-**Note**: In autonomous mode (`/kb:start`), this runs automatically.
+**Note**: In autonomous mode (`/kb:start-knowledge-base`), this runs automatically.
 
 ---
 
@@ -133,8 +133,8 @@ Copy or symlink to `kb/sources/raw/`:
 
 Use the `cloud-sources` skill:
 ```
-/kb:add-source gdrive://doc-id
-/kb:add-source figma://file-key
+/kb:add-kb-source gdrive://doc-id
+/kb:add-kb-source figma://file-key
 ```
 
 ---

@@ -20,26 +20,26 @@ This plugin is inspired by:
 
 ## Commands
 
-### `/code-review:review`
+### `/code-review:code-review`
 
 Initiate a comprehensive code review.
 
 ```bash
 # Review all changes in current branch
-/code-review:review
+/code-review:code-review
 
 # Review specific files
-/code-review:review src/auth/*.ts
+/code-review:code-review src/auth/*.ts
 
 # Review with focus areas
-/code-review:review --focus security,performance
+/code-review:code-review --focus security,performance
 
 # Review PR/commit
-/code-review:review --pr 123
-/code-review:review --commit abc123
+/code-review:code-review --pr 123
+/code-review:code-review --commit abc123
 
 # Quick review (fewer agents)
-/code-review:review --quick
+/code-review:code-review --quick
 ```
 
 ## Specialized Review Agents
@@ -100,7 +100,7 @@ Main user-invocable skill for comprehensive code review:
 - Supports focused reviews (--focus security,performance)
 - Generates detailed reports
 - Integrates with PR/commit workflows
-- Command: `/code-review:review [files...] [options]`
+- Command: `/code-review:code-review [files...] [options]`
 
 ### `reviewing-code`
 
@@ -116,7 +116,7 @@ Auto-activating skill that guides systematic code review when providing feedback
 ### Full Review
 
 ```bash
-/code-review:review
+/code-review:code-review
 ```
 
 This launches all 5 review agents in parallel. Each agent analyzes the code from their specialty and generates a report.
@@ -162,7 +162,7 @@ Recommended actions:
 ### Focused Review
 
 ```bash
-/code-review:review --focus security,performance
+/code-review:code-review --focus security,performance
 ```
 
 Runs only cr-security-reviewer and cr-performance-reviewer agents.
@@ -170,7 +170,7 @@ Runs only cr-security-reviewer and cr-performance-reviewer agents.
 ### Quick Review
 
 ```bash
-/code-review:review --quick
+/code-review:code-review --quick
 ```
 
 Single agent does a general review instead of parallel specialized reviews. Faster but less thorough.
@@ -255,7 +255,7 @@ Pre-commit review workflow:
 
 ```bash
 # Before committing, run a quick review
-/code-review:review --quick --staged
+/code-review:code-review --quick --staged
 
 # Review shows issues before commit
 ```
@@ -266,7 +266,7 @@ Integrate code review into your PR workflow:
 
 ```bash
 # Review PRs before merging
-/code-review:review --pr <PR_NUMBER>
+/code-review:code-review --pr <PR_NUMBER>
 
 # Review generates a report that can be added as a PR comment
 ```
@@ -288,20 +288,20 @@ If task-management plugin is installed, reviews can create tasks for issues:
 - Use focused review during development
 - Configure project-specific rules in .local.md
 - Link review findings to tasks for tracking
-- Archive review reports in docs/code-review:reviews/
+- Archive review reports in docs/code-review:code-reviews/
 
 ## Example Workflow
 
 ```bash
 # During development
-/code-review:review --quick --focus security
+/code-review:code-review --quick --focus security
 
 # Before committing
-/code-review:review src/auth/
+/code-review:code-review src/auth/
 
 # Before PR
-/code-review:review --full
+/code-review:code-review --full
 
 # During PR review
-/code-review:review --pr 123 --comment
+/code-review:code-review --pr 123 --comment
 ```
