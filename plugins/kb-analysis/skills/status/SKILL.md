@@ -3,7 +3,7 @@ name: status
 description: |
   KB workflow status and coordination. Use when:
   - User asks "what's the KB status?", "where am I in the learning?"
-  - User invokes /kb:status
+  - User invokes /kb:kb-status
   - Need to check progress or resume interrupted learning
 
   This skill shows current state and can resume autonomous learning.

@@ -1,6 +1,7 @@
 ---
-name: vsts-lookup
+name: vsts-ticket-lookup
 description: Find related tickets (VSTS/Azure DevOps/Jira). Extracts context about why decisions were made. Use during kb:learn when you find ticket references.
+user-invocable: false
 argument-hint: <ticket-id or keywords>
 ---
 

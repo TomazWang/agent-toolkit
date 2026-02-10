@@ -1,0 +1,9 @@
+{
+  "name": "skill-creator",
+  "version": "1.0.0",
+  "description": "Focused plugin for creating Claude Code skills with interactive wizard and validation",
+  "author": {
+    "name": "Agent Toolkit"
+  },
+  "keywords": ["skills", "development", "tools", "creation"]
+}

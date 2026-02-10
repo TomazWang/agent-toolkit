@@ -1,6 +1,7 @@
 ---
-name: git-analysis
+name: analyze-git-history
 description: Analyze git history for a topic. Finds commits, changes, and evolution of code. Use during kb:learn to understand why code exists.
+user-invocable: false
 argument-hint: <topic> [keywords...]
 ---
 

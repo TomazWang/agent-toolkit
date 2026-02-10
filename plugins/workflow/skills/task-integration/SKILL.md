@@ -1,6 +1,7 @@
 ---
 name: task-integration
 description: Integrates workflow with task-management plugin when available
+user-invocable: false
 ---
 
 # Task Integration Skill
@@ -31,7 +32,7 @@ ls ~/.claude/plugins/task-management 2>/dev/null
 
 **Example:**
 ```
-Workflow: Payment Processing (Block B)
+Workflow: Payment Processing (Stage B)
 
 Created tasks:
 - TASK-101: Setup Stripe SDK (high priority)

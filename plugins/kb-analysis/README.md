@@ -192,18 +192,18 @@ NOTION_API_KEY=your-key
 ### Source Management
 | Skill | Purpose |
 |-------|---------|
-| `prepare` | Initialize structure |
-| `add-source` | Add local/cloud sources |
-| `cloud-sources` | Fetch from Google/Figma/Notion |
-| `doc-converter` | Convert PDF/DOCX to markdown |
+| `add-source` | Add local/cloud sources (user-invocable) |
+| `prepare-kb-analysis` | Initialize structure (auto-activating) |
+| `fetch-cloud-sources` | Fetch from Google/Figma/Notion (auto-activating) |
+| `convert-documents` | Convert PDF/DOCX to markdown (auto-activating) |
 
 ### Analysis Helpers
 | Skill | Purpose |
 |-------|---------|
-| `plan` | Manage learning plan |
-| `git-analysis` | Git history deep dive |
-| `vsts-lookup` | Ticket system lookup |
-| `sourceatlas` | SourceAtlas integration |
+| `plan` | Manage learning plan (user-invocable) |
+| `analyze-git-history` | Git history deep dive (auto-activating) |
+| `vsts-ticket-lookup` | Ticket system lookup (auto-activating) |
+| `sourceatlas-integration` | SourceAtlas integration (auto-activating) |
 
 ## Hooks
 

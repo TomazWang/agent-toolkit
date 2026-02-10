@@ -1,5 +1,6 @@
 ---
-name: cloud-sources
+name: fetch-cloud-sources
+user-invocable: false
 description: |
   Fetch content from cloud sources (Google Docs, Slides, Figma, Notion, Confluence).
   Use when:

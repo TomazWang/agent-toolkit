@@ -3,7 +3,7 @@ name: add-source
 description: |
   Add source files or cloud documents to KB. Use when:
   - User wants to add a repository, file, or cloud doc
-  - User invokes /kb:add-source <path-or-url>
+  - User invokes /kb:kb-add-source <path-or-url>
   - Need to include additional sources mid-learning
 
   Handles local files and cloud sources (Google Docs, Figma, Notion).

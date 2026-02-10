@@ -1,6 +1,7 @@
 ---
-name: sourceatlas
+name: sourceatlas-integration
 description: Use SourceAtlas to quickly understand a codebase. Gets project overview, finds patterns, analyzes code history. Integrates with KB learning workflow.
+user-invocable: false
 argument-hint: <command> [args]
 ---
 

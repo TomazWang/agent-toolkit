@@ -1,5 +1,6 @@
 ---
-name: prepare
+name: prepare-kb-analysis
+user-invocable: false
 description: |
   Initialize KB structure and prepare source materials. Use when:
   - Called by auto-learn during initialization

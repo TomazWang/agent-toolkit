@@ -75,7 +75,7 @@ Validates against schemas in `skills/validation/schema/`:
 
 These skills auto-activate when you're working on specific component types. They are **not user-invocable** - they activate automatically based on context:
 
-#### `custom-plugin-development` (Auto-activates)
+#### `plugin-development` (Auto-activates)
 
 Complete guide to Claude Code plugin architecture and structure.
 
@@ -91,7 +91,7 @@ Complete guide to Claude Code plugin architecture and structure.
 - Auto-discovery patterns
 - Best practices
 
-#### `custom-skill-development` (Auto-activates)
+#### `skill-development` (Auto-activates)
 
 How to create effective skills with proper triggering conditions.
 
@@ -109,7 +109,7 @@ How to create effective skills with proper triggering conditions.
 
 **Note:** For focused skill creation, use the **skill-creator** spin-off plugin instead.
 
-#### `custom-command-development` (Auto-activates)
+#### `command-development` (Auto-activates)
 
 **Note:** Commands and skills are equivalent - both create slash commands. Skills are **preferred** because they support additional features (supporting files, `user-invocable` flag, etc.), but commands still work.
 
@@ -122,7 +122,7 @@ How to create effective skills with proper triggering conditions.
 - Command structure and frontmatter
 - Migration from commands to skills
 
-#### `custom-agent-development` (Auto-activates)
+#### `agent-development` (Auto-activates)
 
 Developing specialized agents with focused expertise.
 
@@ -138,7 +138,7 @@ Developing specialized agents with focused expertise.
 - Color coding (blue, green, orange, cyan, purple, red)
 - Specialization patterns
 
-#### `custom-hook-development` (Auto-activates)
+#### `hook-development` (Auto-activates)
 
 Implementing event hooks for PreToolUse, PostToolUse, SessionStart, etc.
 
@@ -156,7 +156,7 @@ Implementing event hooks for PreToolUse, PostToolUse, SessionStart, etc.
 
 ## Agents
 
-### `custom-plugin-architect`
+### `plugin-creator.plugin-architect`
 
 Designs plugin architecture and component structure.
 
@@ -173,7 +173,7 @@ Designs plugin architecture and component structure.
 # - Decide on agent specializations
 ```
 
-### `custom-plugin-validator`
+### `plugin-creator.plugin-validator`
 
 Validates plugin structure, metadata, and best practices compliance.
 
@@ -227,7 +227,7 @@ Validates plugin structure, metadata, and best practices compliance.
 
 #### Creating Agents → Guided by auto-activating skill
 
-The `custom-agent-development` skill auto-activates and shows you:
+The `agent-development` skill auto-activates and shows you:
 - Agent frontmatter structure
 - Tool selection (Read, Grep, Glob, Bash, Edit, Write, Task)
 - System prompt patterns
@@ -237,7 +237,7 @@ Then you create the agent file manually or with assistance.
 
 #### Creating Hooks → Guided by auto-activating skill
 
-The `custom-hook-development` skill auto-activates and shows you:
+The `hook-development` skill auto-activates and shows you:
 - Hook types (PreToolUse, PostToolUse, SessionStart, etc.)
 - Bash script structure
 - Event handling patterns
@@ -248,7 +248,7 @@ The `custom-hook-development` skill auto-activates and shows you:
 # In your plugin directory
 cd plugins/my-awesome-plugin
 
-# Validate (invokes custom-plugin-validator agent)
+# Validate (invokes plugin-creator.plugin-validator agent)
 /plugin-creator:validation
 ```
 
@@ -257,7 +257,7 @@ cd plugins/my-awesome-plugin
 - ✓ Skill structure (folders with SKILL.md)
 - ✓ Frontmatter validity
 - ✓ user-invocable flags
-- ✓ Naming conventions (custom- prefix for agents)
+- ✓ Naming conventions (plugin-specific prefix for agents)
 - ✓ README completeness
 
 ### Phase 4: Test
@@ -329,13 +329,13 @@ cd plugins/my-plugin
 **DO:**
 - Use skill folders with SKILL.md (not flat .md files)
 - Add `user-invocable: false` to auto-only skills
-- Prefix agents with `custom-` to avoid collisions with built-ins
+- Prefix agents with plugin-specific name (e.g., `myplugin-` or `mp.`) to avoid collisions
 - Include comprehensive README
 - Add proper attribution
 
 **DON'T:**
 - Create flat .md skill files (should be folders)
-- Use generic agent names (prefix with `custom-`)
+- Use plugin-specific agent names (prefix with plugin abbreviation)
 - Skip `user-invocable` flags on auto-activating skills
 - Create commands (use skills instead)
 
@@ -353,8 +353,8 @@ plugin-name/
 │       └── SKILL.md         # user-invocable: false if auto-only
 │
 ├── agents/                  # Specialized sub-agents
-│   ├── custom-analyzer.md
-│   └── custom-validator.md
+│   ├── myplugin-analyzer.md
+│   └── myplugin-validator.md
 │
 ├── hooks/                   # Event handlers
 │   ├── PreToolUse.sh        # Must be executable
@@ -370,7 +370,7 @@ When creating a plugin, ensure:
 - [ ] `plugin.json` has correct metadata
 - [ ] All skills are **folders** with `SKILL.md`
 - [ ] Auto-activating skills have `user-invocable: false`
-- [ ] Agents have `custom-` prefix if they might collide
+- [ ] Agents have plugin-specific prefix to avoid collisions
 - [ ] All frontmatter is valid YAML
 - [ ] README includes attribution
 - [ ] No hardcoded project-specific paths
@@ -392,7 +392,7 @@ The plugin-creator integrates with the workflow plugin:
 
 ## Tips
 
-- **Start with architecture**: The `custom-plugin-architect` agent will help design your plugin structure
+- **Start with architecture**: The `plugin-creator.plugin-architect` agent will help design your plugin structure
 - **Reference examples**: Look at existing plugins in agent-toolkit
 - **Validate early**: Run `/plugin-creator:validation` after creating each component
 - **Use validation schemas**: Reference schema files in `skills/validation/schema/` for correct formats
@@ -414,7 +414,7 @@ The validation skill uses schema files in `skills/validation/schema/`:
   - Optional: user-invocable (false for auto-only skills)
 
 - **agent-frontmatter.md** - Defines agent frontmatter structure
-  - Required: name (custom- prefix), description, color, tools
+  - Required: name (plugin-specific prefix), description, color, tools
   - Valid colors: blue, green, orange, cyan, purple, red
 
 - **directory-structure.md** - Defines expected plugin layout
@@ -447,10 +447,10 @@ These schemas are shared between the validation skill and validator agents, ensu
 ```bash
 /plugin-creator:create code-analyzer
 
-# Add agents:
-# - custom-security-analyzer
-# - custom-performance-analyzer
-# - custom-quality-analyzer
+# Add agents (use plugin-specific prefix):
+# - ca-security-analyzer
+# - ca-performance-analyzer
+# - ca-quality-analyzer
 
 # Add main skill:
 # - analyze (invokes all agents in parallel)

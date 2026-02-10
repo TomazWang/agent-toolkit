@@ -1,7 +1,7 @@
 {
   "name": "workflow",
   "version": "1.0.0",
-  "description": "Unified workflow: Spec → Plan → Task with complexity detection (Block A/B/C)",
+  "description": "Unified workflow: Spec → Plan → Task with complexity detection (Stage A/B/C)",
   "author": {
     "name": "Agent Toolkit"
   },

@@ -6,7 +6,7 @@ description: |
   - Need to add/remove topics from plan
   - Reviewing what will be learned
 
-  Note: In autonomous mode (/kb:start), planning happens automatically.
+  Note: In autonomous mode (/kb:kb-start), planning happens automatically.
 ---
 
 # KB Plan: Learning Plan Management

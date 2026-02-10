@@ -1,6 +1,7 @@
 ---
-name: doc-converter
+name: convert-documents
 description: Convert documents to AI-readable markdown. Handles PPT, PDF, DOCX, etc. Use during kb:prepare to convert source documents.
+user-invocable: false
 argument-hint: [file or directory]
 ---
 

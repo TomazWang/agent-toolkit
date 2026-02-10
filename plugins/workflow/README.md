@@ -1,225 +1,301 @@
 # Workflow Plugin
 
-Unified development workflow with automatic complexity detection: **Spec → Plan → Task**
+**Unified development workflow**: SDD (Spec) → BDD (Behavior) → TDD (Test) with intelligent orchestration.
 
 ## Philosophy
 
-Three gears for three complexity levels:
+One streamlined workflow with three **sequential stages** that adapt to complexity:
 
-> **Block A** (Complex): Spec + Meta-Validation → Implementation
-> **Block B** (Normal): Spec Change + TDD → Implementation
-> **Block C** (Simple): Plan → Tasks → Implementation
+```
+┌─────────────────────────────────────────┐
+│  Stage A: SPECIFICATION                 │
+│  Create spec using SDD + OpenSpec       │
+│  Can be: Full / Light / Skip            │
+└─────────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────────┐
+│  Stage B: DEVELOPMENT                   │
+│  Define behaviors (BDD) + Implement (TDD)│
+│  Can be: Full / Simplified              │
+└─────────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────────┐
+│  Stage C: EXECUTION                     │
+│  Task tracking + Verification           │
+│  Can be: Full / Standard / Minimal      │
+└─────────────────────────────────────────┘
+```
 
-The system auto-detects complexity and routes to the appropriate workflow.
+**The orchestrator** decides which parts to execute, simplify, or skip based on complexity.
 
 ## Source Attribution
 
 This plugin synthesizes patterns from:
-- [OpenSpec by Fission-AI](https://github.com/Fission-AI/OpenSpec) - Spec-driven development
-- [Superpowers](https://github.com/obra/superpowers) - Systematic workflows (TDD, planning)
-- Original design for integrated workflow orchestration
+- [OpenSpec by Fission-AI](https://github.com/Fission-AI/OpenSpec) - Fluid, iterative specification
+- [Superpowers](https://github.com/obra/superpowers) - TDD and BDD workflows
+- Original design for orchestrated workflow integration
 
-## The Three Blocks
+## How It Works
 
-### Block A: Spec + Meta-Validation (Most Complex)
+### Complexity Levels
 
-**When:** New projects, complex features, architectural decisions
+**Complex Projects:**
+- Stage A: FULL (complete spec + PoC validation)
+- Stage B: FULL (BDD scenarios + TDD implementation)
+- Stage C: FULL (task tracking + comprehensive verification)
 
-**Process:**
-1. Research (read existing specs/docs)
-2. Create initial spec (temporary)
-3. **Meta-testing** (validates spec is workable):
-   - Auto-generated PoC tests
-   - Manual validation questions
-   - Complexity checks
-4. Iterate spec based on test results
-5. Finalize spec → Move to Block B
+**Medium Projects:**
+- Stage A: LIGHT (spec change document)
+- Stage B: FULL (BDD + TDD)
+- Stage C: STANDARD (optional tasks + verification)
 
-**Skip if:** Requirement doesn't need complex thinking/design
+**Simple Tasks:**
+- Stage A: SKIP
+- Stage B: SIMPLIFIED (direct TDD)
+- Stage C: MINIMAL (quick verification)
 
-### Block B: Spec Change + TDD (Normal Job)
+## The Three Stages
 
-**When:** Standard features, changes with design impact
+### Stage A: Specification (SDD)
 
-**Process:**
-1. Create spec change document
-2. Convert spec → Test cases + Plans
-3. **TDD workflow** (integrates with tdd-workflow plugin):
-   - Write failing tests (RED)
-   - Implement to pass (GREEN)
+**Purpose:** Define what to build
+
+**Complex Mode:**
+1. Research existing system
+2. Create comprehensive spec (OpenAPI if API)
+3. Generate PoC validation tests
+4. Manual validation questions
+5. Iterate spec based on feedback
+6. Get user approval
+
+**Light Mode:**
+1. Review existing spec
+2. Create spec change document
+3. Get user approval
+
+**Skip Mode:**
+- No spec needed for simple tasks
+
+**Uses:**
+- `spec-driven-development` skill (auto-activates)
+- `openspec-integration` skill (auto-activates if `openspec/` exists)
+- `meta-testing` skill (auto-activates for PoC validation)
+
+### Stage B: Development (BDD + TDD)
+
+**Purpose:** Implement with behavior-first, test-driven approach
+
+**Full Mode:**
+1. Define BDD scenarios (Given-When-Then)
+2. For each scenario:
+   - Write failing test (RED)
+   - Implement feature (GREEN)
    - Refactor (REFACTOR)
-4. Validate against test cases
+3. Update spec as you learn
 
-**Skip if:** Task is simple (<8 steps)
+**Simplified Mode:**
+1. Write tests directly (TDD)
+2. Implement
+3. Refactor
 
-### Block C: Simple Planning (Simplest)
+**Uses:**
+- `behavior-driven` skill (auto-activates for BDD scenarios)
+- `test-driven-development` skill (auto-activates for TDD cycle)
+- `openspec-integration` skill (auto-activates for spec updates)
 
-**When:** Small tasks, bug fixes, simple features
+### Stage C: Execution (Task Tracking)
 
-**Process:**
-1. Create implementation plan
-2. Plans → Tasks (TodoWrite)
-3. Implement with task tracking
+**Purpose:** Track progress and verify completion
 
-**Always active:** TodoWrite task tracking in all blocks
+**Full Mode:**
+1. Create tasks (if task-management plugin exists)
+2. Break into subtasks
+3. Execute with tracking
+4. Comprehensive verification
+
+**Standard Mode:**
+1. Optional task tracking
+2. Execute implementation
+3. Standard verification
+
+**Minimal Mode:**
+1. Run tests
+2. Quick verification
+3. Done
+
+**Uses:**
+- `task-integration` skill (auto-activates if task-management available)
 
 ## Commands
 
-### `/workflow:start <requirement>`
+### `/workflow:start <description>`
 
-Main entry point. Auto-detects complexity and routes to A/B/C.
+**Main entry point.** Analyzes complexity and orchestrates the flow.
 
 ```bash
-# Auto-detect
+# Auto-detect complexity
 /workflow:start "Add OAuth2 authentication"
 
-# Force specific block
-/workflow:start "Build payment system" --block a
-/workflow:start "Add notifications" --block b
-/workflow:start "Fix button" --block c
-
-# With context
-/workflow:start "Refactor auth" --research-first
+# Override complexity
+/workflow:start "Build payment system" --complexity=complex
+/workflow:start "Fix button styling" --complexity=simple
 ```
 
-### `/workflow:spec`
-
-Manually enter Block A (spec creation + meta-validation).
-
-```bash
-/workflow:spec create "Multi-tenant system"
-/workflow:spec validate              # Run meta-tests
-/workflow:spec finalize              # Move to Block B
-```
-
-### `/workflow:plan`
-
-Manually enter Block C (simple planning).
-
-```bash
-/workflow:plan "Add dark mode"
-/workflow:plan "Fix login" --skip-research
-```
+**The orchestrator will:**
+1. Analyze the request
+2. Detect complexity (complex/medium/simple)
+3. Check for integrations (OpenSpec, task-management)
+4. Show workflow plan
+5. Execute stages sequentially
 
 ### `/workflow:status`
 
-Check current workflow state and progress.
+Check current workflow progress.
 
 ```bash
 /workflow:status
 
 # Shows:
-# - Current block (A/B/C)
-# - Feature being worked on
-# - Phase/status
-# - Tasks completed/remaining
+# - Current stage (A/B/C)
+# - Progress within stage
+# - Completed steps
 # - Next steps
 ```
 
-## Complexity Detection
+### `/workflow:spec`
 
-**Auto-routes to Block A (Complex):**
-- Keywords: "new project", "architecture", "design", "system"
-- Estimated >15 steps
-- Multiple subsystems
-- No existing spec
-- User: `--block a`
+Manually work on Stage A (specification).
 
-**Auto-routes to Block B (Normal):**
-- Keywords: "implement", "add feature", "refactor"
-- Existing spec found
-- 8-15 estimated steps
-- Moderate complexity
-- User: `--block b`
-
-**Auto-routes to Block C (Simple):**
-- Keywords: "fix", "quick", "simple"
-- <8 estimated steps
-- Single file/component
-- User: `--block c`
-
-**When unclear:** Asks user with recommendation
+```bash
+/workflow:spec "User Authentication API"
+```
 
 ## Integration with Other Plugins
-
-### task-management Plugin
-
-**If installed:**
-- Creates tasks using `/task` commands
-- Links workflow phases to task IDs
-- Tasks visible in task-management UI
-- Synchronized tracking
-
-**If not installed:**
-- Falls back to TodoWrite only
-
-### tdd-workflow Plugin
-
-**Block B auto-integrates:**
-- Generates test cases from spec
-- Launches `/tdd:start` with tests
-- Validates implementation against tests
 
 ### OpenSpec
 
 **Auto-detects `openspec/` directory:**
-- Block A → `openspec/changes/[feature]/`
-  - proposal.md, meta-tests.md, design.md
-- Block B → `openspec/changes/[feature]/`
-  - spec-change.md, tests.md, tasks.md
+- Uses OpenSpec format for all specs
+- Stores specs in `openspec/spec/`
+- Follows fluid, iterative philosophy
+- Version specs as they evolve
 
 **Without OpenSpec:**
-- Uses `docs/specs/` structure
+- Uses standard `docs/api/` or `docs/specs/` structure
 
-## Meta-Testing (Block A)
+### task-management Plugin
 
-Validates specs are workable before implementation.
+**If installed:**
+- Stage C automatically creates tasks
+- Breaks work into trackable subtasks
+- Links workflow phases to task IDs
+- Synchronized progress tracking
 
-**Two approaches:**
+**If not installed:**
+- Falls back to simple verification
 
-### 1. Auto-Generated PoC Tests
-- System generates minimal test code
-- Runs basic validation
-- Example: "Can we connect to this API?"
+## Workflow Orchestrator
 
-### 2. Manual Validation Questions
-- "Does this scale to N users?"
-- "Is complexity justified?"
-- "Are there simpler alternatives?"
+The **workflow-orchestrator** skill is the brain of the system:
 
-**Both used case-by-case** for thorough validation.
+1. **Analyzes request** → Determines complexity
+2. **Checks integrations** → Detects OpenSpec, task-management
+3. **Plans workflow** → Decides which stages to execute/simplify/skip
+4. **Executes sequentially** → Stage A → B → C
+5. **Adapts dynamically** → Can switch modes mid-flow
 
-## Example: Complete Flow
+## Example: Complex Project
 
+```bash
+User: /workflow:start "Add payment processing with Stripe"
+
+Orchestrator Analysis:
+  Complexity: COMPLEX
+  Reason: Payment = security-critical, new integration
+  Estimated steps: 25
+
+Workflow Plan:
+  Stage A: FULL (OpenAPI spec + PoC validation)
+  Stage B: FULL (BDD scenarios + TDD)
+  Stage C: FULL (Task tracking + verification)
+
+Integrations:
+  ✓ OpenSpec (openspec/ found)
+  ✓ Task Management (plugin available)
+
+Proceed? [Y/n]
+
+─────────────────────────────────────────
+
+Stage A: Specification
+  ✓ Research existing payment code
+  ✓ Create OpenAPI spec (openspec/spec/payment-api.yaml v0.1.0)
+  ✓ Generate PoC tests
+    ✓ Test Stripe connection
+    ✓ Test payment creation
+    ✓ Test webhook handling
+  ✓ Manual validation
+    Q: "How to handle concurrent payments?" → Add idempotency
+    Q: "Webhook security?" → Add signature verification
+  ✓ Update spec to v0.3.0
+  ✓ User approval received
+
+Stage B: Development
+  ✓ Generate BDD scenarios (12 scenarios)
+  ✓ TDD Implementation
+    Scenario 1: Process credit card payment
+      ✓ RED: Test written
+      ✓ GREEN: Implementation passes
+      ✓ REFACTOR: Code cleaned
+    Scenario 2: Handle payment failure
+      ✓ RED: Test written
+      ✓ GREEN: Implementation passes
+      ✓ REFACTOR: Code cleaned
+    ... (10 more scenarios)
+  ✓ Spec updated to v1.0.0 (marked STABLE)
+
+Stage C: Execution
+  ✓ Created TASK-456 "Payment Processing"
+  ✓ Subtasks created (12 subtasks)
+  ✓ All subtasks completed (12/12)
+  ✓ All tests passing (47/47)
+  ✓ Comprehensive verification complete
+
+✅ Workflow complete!
 ```
-User: /workflow:start "Add payment processing"
 
-Router Analysis:
-→ Complexity: High (payments = sensitive)
-→ Steps: ~20
-→ Recommendation: Block A
+## Example: Simple Task
 
-Block A: Spec + Meta-Validation
-→ Research existing code
-→ Create initial spec (Stripe integration)
-→ Auto PoC: Test Stripe connection ✅
-→ Auto PoC: Test payment creation ✅
-→ Manual Q: "Webhook security?" → Add verification
-→ Iterate spec
-→ Finalize: openspec/changes/payment/design.md
+```bash
+User: /workflow:start "Fix login button alignment"
 
-Block B: Implementation
-→ Spec change: Phase 1 - Integration
-→ Generate 12 test scenarios
-→ Create 18-step plan
-→ Integration: Create 18 tasks in task-management
-→ Launch TDD workflow
-→ Implement & validate
-→ ✅ Complete
+Orchestrator Analysis:
+  Complexity: SIMPLE
+  Reason: CSS fix, single file
+  Estimated steps: 3
 
-Status:
-✅ All tests passing (12/12)
-✅ All tasks completed (18/18)
+Workflow Plan:
+  Stage A: SKIP
+  Stage B: SIMPLIFIED (Direct TDD)
+  Stage C: MINIMAL (Quick verify)
+
+Proceed? [Y/n]
+
+─────────────────────────────────────────
+
+Stage A: Specification
+  ⊘ Skipped (not needed for simple task)
+
+Stage B: Development
+  ✓ Write test: "Login button should be center-aligned"
+  ✓ Implement: Update CSS
+  ✓ Test passes
+
+Stage C: Execution
+  ✓ All tests passing
+  ✓ Quick verification complete
+
+✅ Workflow complete!
 ```
 
 ## Configuration
@@ -228,53 +304,56 @@ Create `.claude/workflow.local.md`:
 
 ```yaml
 ---
-default_block: auto  # auto, a, b, c
+complexity_override: auto  # auto, complex, medium, simple
 openspec_enabled: true
 task_management_integration: true
-tdd_integration: true
-meta_testing_mode: both  # auto, manual, both
+auto_approve_specs: false
 ---
 
-# Project Workflow Notes
+# Project Workflow Configuration
 
-Project-specific context and preferences.
+Custom settings and notes for this project.
 ```
 
-## Skip Logic
+## Skills Included
 
-**Automatic skips:**
-- Skip Block A → B: Spec exists, small scope, no architecture
-- Skip Block B → C: Very small (<8 steps), no tests needed
+**User-invocable:**
+- **start**: Start new workflow with complexity detection (`/workflow:start`)
+- **spec**: Manually work on Stage A specification (`/workflow:spec`)
+- **status**: Check current workflow progress (`/workflow:status`)
+- **plan**: Create simple plans for straightforward tasks (`/workflow:plan`)
 
-**Ask user when unclear:**
-```
-Recommendation: Block B (Recommended)
-- [Reasoning]
-
-Options:
-1. Block B (Recommended)
-2. Block A (Full spec)
-3. Block C (Simple)
-
-Which?
-```
+**Auto-activating:**
+- **workflow-orchestrator**: Main conductor that orchestrates stages
+- **stage-spec**: Stage A (Specification) execution
+- **stage-dev**: Stage B (Development) execution
+- **stage-exec**: Stage C (Execution) execution
+- **spec-driven-development**: SDD patterns (OpenAPI/AsyncAPI)
+- **behavior-driven**: BDD scenarios (Given-When-Then)
+- **test-driven-development**: TDD cycle (RED-GREEN-REFACTOR)
+- **openspec-integration**: OpenSpec format support
+- **task-integration**: task-management plugin integration
+- **meta-testing**: PoC validation tests
 
 ## Tips
 
-- **Start simple:** Let system detect complexity
-- **Override when needed:** Use `--block` flags
-- **Iterate freely:** Specs and plans are living documents
-- **Trust the routing:** System learns patterns over time
+- **Let the orchestrator decide**: Trust complexity detection
+- **Specs are fluid**: Update as you learn (OpenSpec philosophy)
+- **BDD before TDD**: Define behaviors first, then test-drive implementation
+- **Track with tasks**: Use task-management plugin for complex work
+- **Iterate freely**: Stages are checkpoints, not barriers
 
 ## Workflow Benefits
 
-- **Always tracked:** TodoWrite integration in all blocks
-- **Right-sized:** Complexity matches task needs
-- **Validated:** Meta-testing prevents bad specs
-- **Integrated:** Works with existing plugins
-- **Flexible:** Manual override available
+✅ **One unified flow** (no parallel routes)
+✅ **Adapts to complexity** (stages simplify/skip automatically)
+✅ **Spec-driven** (SDD with OpenSpec)
+✅ **Behavior-first** (BDD scenarios)
+✅ **Test-driven** (TDD implementation)
+✅ **Tracked** (task-management integration)
+✅ **Validated** (PoC testing before implementation)
 
 ## Sources
 
-- [OpenSpec](https://github.com/Fission-AI/OpenSpec) - Spec-driven development philosophy
-- [Superpowers](https://github.com/obra/superpowers) - TDD and systematic workflows
+- [OpenSpec](https://github.com/Fission-AI/OpenSpec) - Fluid specification philosophy
+- [Superpowers](https://github.com/obra/superpowers) - TDD, BDD, systematic workflows

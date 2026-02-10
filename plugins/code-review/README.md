@@ -20,31 +20,31 @@ This plugin is inspired by:
 
 ## Commands
 
-### `/review`
+### `/code-review:review`
 
 Initiate a comprehensive code review.
 
 ```bash
 # Review all changes in current branch
-/review
+/code-review:review
 
 # Review specific files
-/review src/auth/*.ts
+/code-review:review src/auth/*.ts
 
 # Review with focus areas
-/review --focus security,performance
+/code-review:review --focus security,performance
 
 # Review PR/commit
-/review --pr 123
-/review --commit abc123
+/code-review:review --pr 123
+/code-review:review --commit abc123
 
 # Quick review (fewer agents)
-/review --quick
+/code-review:review --quick
 ```
 
 ## Specialized Review Agents
 
-### architecture-reviewer
+### cr-architecture-reviewer
 
 Analyzes code architecture and design:
 - Design patterns usage
@@ -53,7 +53,7 @@ Analyzes code architecture and design:
 - Code organization
 - Maintainability issues
 
-### security-reviewer
+### cr-security-reviewer
 
 Scans for security vulnerabilities:
 - SQL injection risks
@@ -63,7 +63,7 @@ Scans for security vulnerabilities:
 - Sensitive data exposure
 - Dependency vulnerabilities
 
-### test-coverage-reviewer
+### cr-test-coverage-reviewer
 
 Evaluates testing:
 - Test coverage analysis
@@ -72,7 +72,7 @@ Evaluates testing:
 - Integration vs unit tests
 - Edge case coverage
 
-### performance-reviewer
+### cr-performance-reviewer
 
 Identifies performance issues:
 - N+1 queries
@@ -82,7 +82,7 @@ Identifies performance issues:
 - Caching opportunities
 - Bundle size concerns
 
-### style-reviewer
+### cr-style-reviewer
 
 Checks code style:
 - Naming conventions
@@ -93,30 +93,30 @@ Checks code style:
 
 ## Skills
 
+### `review`
+
+Main user-invocable skill for comprehensive code review:
+- Orchestrates parallel specialized agents
+- Supports focused reviews (--focus security,performance)
+- Generates detailed reports
+- Integrates with PR/commit workflows
+- Command: `/code-review:review [files...] [options]`
+
 ### `reviewing-code`
 
-Use this skill when manually reviewing code or providing feedback. Guides systematic code review:
+Auto-activating skill that guides systematic code review when providing feedback:
 1. Understand context
 2. Analyze changes
 3. Check for issues
 4. Provide constructive feedback
 5. Suggest improvements
 
-### `security-analysis`
-
-Use when analyzing code for security vulnerabilities. Systematic security review:
-1. Input validation
-2. Authentication/authorization
-3. Data protection
-4. Error handling
-5. Dependencies
-
 ## Usage
 
 ### Full Review
 
 ```bash
-/review
+/code-review:review
 ```
 
 This launches all 5 review agents in parallel. Each agent analyzes the code from their specialty and generates a report.
@@ -126,11 +126,11 @@ This launches all 5 review agents in parallel. Each agent analyzes the code from
 Starting comprehensive code review...
 
 Running 5 specialized review agents in parallel:
-  - architecture-reviewer
-  - security-reviewer
-  - test-coverage-reviewer
-  - performance-reviewer
-  - style-reviewer
+  - cr-architecture-reviewer
+  - cr-security-reviewer
+  - cr-test-coverage-reviewer
+  - cr-performance-reviewer
+  - cr-style-reviewer
 
 === Architecture Review ===
 [Architecture findings]
@@ -162,15 +162,15 @@ Recommended actions:
 ### Focused Review
 
 ```bash
-/review --focus security,performance
+/code-review:review --focus security,performance
 ```
 
-Runs only security-reviewer and performance-reviewer agents.
+Runs only cr-security-reviewer and cr-performance-reviewer agents.
 
 ### Quick Review
 
 ```bash
-/review --quick
+/code-review:review --quick
 ```
 
 Single agent does a general review instead of parallel specialized reviews. Faster but less thorough.
@@ -251,31 +251,35 @@ exclude_patterns:
 
 ### With Git Hooks
 
-Add pre-commit hook for automatic review:
+Pre-commit review workflow:
 
 ```bash
-#!/bin/bash
-# .git/hooks/pre-commit
-claude review --quick --staged
+# Before committing, run a quick review
+/code-review:review --quick --staged
+
+# Review shows issues before commit
 ```
 
 ### With CI/CD
 
-Add to GitHub Actions:
+Integrate code review into your PR workflow:
 
-```yaml
-- name: Code Review
-  run: claude review --pr ${{ github.event.pull_request.number }}
+```bash
+# Review PRs before merging
+/code-review:review --pr <PR_NUMBER>
+
+# Review generates a report that can be added as a PR comment
 ```
 
 ### With Task Management
 
-Reviews automatically create tasks for issues:
+If task-management plugin is installed, reviews can create tasks for issues:
 
 ```bash
-# After review, creates:
-/task create "Fix SQL injection in auth/login.ts" --priority critical
-/task create "Add tests for payment processing" --priority high
+# After review, the skill can create tasks for critical/high priority findings
+# Example tasks that would be created:
+# - "Fix SQL injection in auth/login.ts" (priority: critical)
+# - "Add tests for payment processing" (priority: high)
 ```
 
 ## Tips
@@ -284,20 +288,20 @@ Reviews automatically create tasks for issues:
 - Use focused review during development
 - Configure project-specific rules in .local.md
 - Link review findings to tasks for tracking
-- Archive review reports in docs/reviews/
+- Archive review reports in docs/code-review:reviews/
 
 ## Example Workflow
 
 ```bash
 # During development
-/review --quick --focus security
+/code-review:review --quick --focus security
 
 # Before committing
-/review src/auth/
+/code-review:review src/auth/
 
 # Before PR
-/review --full
+/code-review:review --full
 
 # During PR review
-/review --pr 123 --comment
+/code-review:review --pr 123 --comment
 ```

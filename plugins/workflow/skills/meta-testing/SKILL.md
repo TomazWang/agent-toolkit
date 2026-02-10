@@ -1,11 +1,12 @@
 ---
 name: meta-testing
 description: Validates specs are workable through PoC tests and validation questions
+user-invocable: false
 ---
 
 # Meta-Testing Skill
 
-Validates specifications before full implementation (Block A).
+Validates specifications before full implementation (Stage A).
 
 ## Purpose
 
@@ -147,4 +148,4 @@ Spec is ready when:
 - ✅ No obvious blockers
 - ✅ Requirements fulfilled
 
-Then move to Block B for implementation.
+Then move to Stage B for implementation.
