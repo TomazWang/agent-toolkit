@@ -13,7 +13,7 @@
     {
       "name": "workflow",
       "source": "./plugins/workflow",
-      "description": "Unified workflow system with Block A/B/C complexity routing (Spec → Plan → Task)",
+      "description": "Unified workflow system with Stage A/B/C complexity routing (Spec → Dev → Exec)",
       "version": "1.0.0",
       "author": {
         "name": "Agent Toolkit"
@@ -71,39 +71,27 @@
       "repository": "https://github.com/TomazWang/agent-toolkit"
     },
     {
-      "name": "tdd-workflow",
-      "source": "./plugins/tdd-workflow",
-      "description": "Test-Driven Development workflow with RED-GREEN-REFACTOR cycle",
-      "version": "1.0.0",
-      "author": {
-        "name": "Agent Toolkit"
-      },
-      "category": "development",
-      "keywords": ["testing", "tdd", "quality", "workflow"],
-      "repository": "https://github.com/TomazWang/agent-toolkit"
-    },
-    {
-      "name": "sdd-workflow",
-      "source": "./plugins/sdd-workflow",
-      "description": "Specification-Driven Development with OpenAPI/AsyncAPI specifications",
-      "version": "1.0.0",
-      "author": {
-        "name": "Agent Toolkit"
-      },
-      "category": "development",
-      "keywords": ["api", "specification", "openapi", "asyncapi", "workflow"],
-      "repository": "https://github.com/TomazWang/agent-toolkit"
-    },
-    {
-      "name": "marketplace",
-      "source": "./plugins/marketplace",
-      "description": "Plugin marketplace for discovering and installing agent-toolkit plugins",
+      "name": "skill-creator",
+      "source": "./plugins/skill-creator",
+      "description": "Focused plugin for creating Claude Code skills with interactive wizard and validation",
       "version": "1.0.0",
       "author": {
         "name": "Agent Toolkit"
       },
       "category": "meta",
-      "keywords": ["marketplace", "installer", "distribution"],
+      "keywords": ["skills", "development", "tools", "creation"],
+      "repository": "https://github.com/TomazWang/agent-toolkit"
+    },
+    {
+      "name": "kb-analysis",
+      "source": "./plugins/kb-analysis",
+      "description": "Autonomous knowledge base builder - Trigger once, learn entire codebase",
+      "version": "1.0.0",
+      "author": {
+        "name": "Agent Toolkit"
+      },
+      "category": "development",
+      "keywords": ["knowledge-base", "documentation", "code-analysis", "git-history", "autonomous-learning"],
       "repository": "https://github.com/TomazWang/agent-toolkit"
     }
   ]
