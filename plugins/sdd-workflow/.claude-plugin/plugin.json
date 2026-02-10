@@ -1,9 +1,0 @@
-{
-  "name": "sdd-workflow",
-  "version": "1.0.0",
-  "description": "Specification-Driven Development with OpenAPI/AsyncAPI specifications",
-  "author": {
-    "name": "Agent Toolkit"
-  },
-  "keywords": ["api", "specification", "openapi", "workflow"]
-}
