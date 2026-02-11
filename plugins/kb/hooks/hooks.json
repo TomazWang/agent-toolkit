@@ -1,0 +1,46 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "mkdir -p kb/.logs && echo \"[$(date -Iseconds)] Session started\" >> kb/.logs/session.log 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [[ -d kb ]]; then jq -r '\"[\" + (now | todate) + \"] \" + .tool_name + \": \" + (.tool_input.file_path // \"unknown\")' >> kb/.logs/tools.log 2>/dev/null || true; fi"
+          }
+        ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [[ -d kb ]]; then jq -r '\"[\" + (now | todate) + \"] Read: \" + (.tool_input.file_path // \"unknown\")' >> kb/.logs/reads.log 2>/dev/null || true; fi"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [[ -d kb/.logs ]]; then echo \"[$(date -Iseconds)] Session ended\" >> kb/.logs/session.log 2>/dev/null || true; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
