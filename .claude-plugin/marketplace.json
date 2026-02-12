@@ -81,18 +81,6 @@
       "category": "meta",
       "keywords": ["skills", "development", "tools", "creation"],
       "repository": "https://github.com/TomazWang/agent-toolkit"
-    },
-    {
-      "name": "kb-analysis",
-      "source": "./plugins/kb-analysis",
-      "description": "Autonomous knowledge base builder - Trigger once, learn entire codebase",
-      "version": "1.0.0",
-      "author": {
-        "name": "Agent Toolkit"
-      },
-      "category": "development",
-      "keywords": ["knowledge-base", "documentation", "code-analysis", "git-history", "autonomous-learning"],
-      "repository": "https://github.com/TomazWang/agent-toolkit"
     }
   ]
 }
