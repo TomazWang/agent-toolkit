@@ -112,27 +112,6 @@ Agent Toolkit provides modular plugins that extend Claude Code with systematic w
 
 ---
 
-### 📚 KB Analysis Plugin
-
-**[kb-analysis](plugins/kb-analysis/README.md)** - Autonomous knowledge base builder
-
-**Features**:
-- One-trigger autonomous codebase learning
-- Git history analysis
-- Source code + docs + cloud integration
-- Institutional knowledge capture
-
-**Skills**:
-- `/kb:start-knowledge-base` - Autonomous learning (trigger once)
-- `/kb:plan-kb-learning` - Create/update learning plan
-- `/kb:check-kb-status` - Check progress
-- `/kb:add-kb-source` - Add sources
-- `analyze-git-history`, `convert-documents`, `sourceatlas-integration`, `fetch-cloud-sources`, and more
-
-**Agents**: `kb.guide`, `kb.topic-analyzer`, `kb.discrepancy-hunter`, `kb.code-investigator`
-
----
-
 ## 🚀 Installation
 
 ### Manual Installation (Recommended)
@@ -247,7 +226,6 @@ Each plugin has detailed documentation:
 - [Code Review Plugin](plugins/code-review/README.md) - Multi-agent review
 - [Brainstorming Plugin](plugins/brainstorming/README.md) - Design collaboration
 - [Plugin Creator](plugins/plugin-creator/README.md) - Create plugins
-- [KB Analysis Plugin](plugins/kb-analysis/README.md) - Knowledge base builder
 
 ## 🎯 Key Features
 
@@ -308,3 +286,16 @@ Contributions welcome! Please:
 - ✅ Removed marketplace plugin (manual installation only)
 - ✅ Added workflow orchestrator
 - ✅ No naming collisions with built-in Claude Code functionality
+- ✅ Moved KB plugin to standalone project (kb-distiller)
+
+## 📦 Migrated Plugins
+
+### KB Distiller (formerly KB Analysis Plugin)
+
+The KB (Knowledge Base) plugin has evolved into a comprehensive standalone system and is now maintained as a separate project:
+
+**🔗 [kb-distiller](https://github.com/TomazWang/kb-distiller)** - Autonomous knowledge base builder
+
+The plugin outgrew the scope of agent-toolkit with its 117-page specification, multi-stage workflow, and extensive script system. It now has its own repository for independent development.
+
+**For existing users**: If you have KB installed via symlink, please remove the old symlink and clone kb-distiller separately.
